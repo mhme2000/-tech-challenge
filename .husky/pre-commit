@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint && yarn format && git commit -m 'lint' && git push
+yarn lint && yarn format 
