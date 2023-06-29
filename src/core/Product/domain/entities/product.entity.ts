@@ -16,16 +16,16 @@ export class Product {
   creationDate: Date;
 
   @Column({
-    name: 'name'
+    name: 'name',
   })
   name: string;
 
   @Column({
-    name: 'description'
+    name: 'description',
   })
   description: string;
 
   @ManyToOne(() => Category, (category) => category.products)
-  category: Category
+  category: Category;
   //TODO Adicionar colunas restantes
 }

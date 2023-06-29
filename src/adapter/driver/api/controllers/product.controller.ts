@@ -31,7 +31,7 @@ export class ProductController {
     private updateProductByIdApp: IUpdateProductByIdApplication,
     @Inject('ICreateProductApplication')
     private createProductApp: ICreateProductApplication,
-  ) { }
+  ) {}
 
   @Get('/:id')
   public async GetById(
@@ -53,9 +53,7 @@ export class ProductController {
   }
 
   @Get()
-  public async Get(
-    @Res() res,
-  ) {
+  public async Get(@Res() res) {
     try {
       const products = await this.getAllProductsApp.getAllProducts();
       return res.status(HttpStatus.OK).json({
@@ -93,10 +91,13 @@ export class ProductController {
   public async Update(
     @Res() res,
     @Param('id', new ParseUUIDPipe({ version: '4' })) productId: string,
-    @Body() productDto: Product
+    @Body() productDto: Product,
   ) {
     try {
-      const product = await this.updateProductByIdApp.updateProductById(productId, productDto);
+      const product = await this.updateProductByIdApp.updateProductById(
+        productId,
+        productDto,
+      );
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
         data: product,
@@ -110,10 +111,7 @@ export class ProductController {
   }
 
   @Post()
-  public async Create(
-    @Res() res,
-    @Body() productDto: Product
-  ) {
+  public async Create(@Res() res, @Body() productDto: Product) {
     try {
       const product = await this.createProductApp.createProduct(productDto);
       return res.status(HttpStatus.CREATED).json({

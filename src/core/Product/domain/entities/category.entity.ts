@@ -7,12 +7,12 @@ export class Category {
   id: string;
 
   @Column({
-    name: 'description'
+    name: 'description',
   })
   description: string;
 
   @OneToMany(() => Product, (product) => product.category)
-  products: Product[]
+  products: Product[];
 
   // TODO Criar script para popular tabela de categoria
 }

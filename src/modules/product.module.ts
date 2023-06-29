@@ -38,6 +38,13 @@ const productRepository = {
 @Module({
   controllers: [ProductController],
   imports: [TypeOrmModule.forFeature([Product])],
-  providers: [getProductByIdApp, getAllProductsApp, deleteProductByIdApp, updateProductByIdApp, createProductApp, productRepository],
+  providers: [
+    getProductByIdApp,
+    getAllProductsApp,
+    deleteProductByIdApp,
+    updateProductByIdApp,
+    createProductApp,
+    productRepository,
+  ],
 })
-export class ProductModule { }
+export class ProductModule {}
