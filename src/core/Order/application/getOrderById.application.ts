@@ -9,7 +9,7 @@ export class GetOrderByIdApplication implements IGetOrderByIdApplication {
   constructor(
     @Inject(ORDER_TYPES.repositories.IOrderRepository)
     private orderRepository: IOrderRepository,
-  ) {}
+  ) { }
 
   async getOrderById(id: string): Promise<Order> {
     return await this.orderRepository.getById(id);
