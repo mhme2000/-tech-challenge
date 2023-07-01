@@ -11,18 +11,22 @@ import {
   Post,
   Body,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ICreateProductApplication } from 'src/core/Product/application/interfaces/createProduct.interface';
 import { IDeleteProductByIdApplication } from 'src/core/Product/application/interfaces/deleteProductById.interface';
 import { IGetAllProductsApplication } from 'src/core/Product/application/interfaces/getAllProducts.interface';
+import { IGetProductByCategoryIdApplication } from 'src/core/Product/application/interfaces/getProductByCategoryId.interface';
 import { IGetProductByIdApplication } from 'src/core/Product/application/interfaces/getProductById.interface';
 import { IUpdateProductByIdApplication } from 'src/core/Product/application/interfaces/updateProductById.interface';
-import { Product } from 'src/core/Product/domain/entities/Product.entity';
-
+import { AddOrUpdateProductDto } from 'src/core/Product/domain/dtos/addOrUpdateProductDto';
+@ApiTags('Product')
 @Controller('product')
 export class ProductController {
   constructor(
     @Inject('IGetProductByIdApplication')
     private getProductByIdApp: IGetProductByIdApplication,
+    @Inject('IGetProductByCategoryIdApplication')
+    private getProductByCategoryIdApp: IGetProductByCategoryIdApplication,
     @Inject('IGetAllProductsApplication')
     private getAllProductsApp: IGetAllProductsApplication,
     @Inject('IDeleteProductByIdApplication')
@@ -31,7 +35,7 @@ export class ProductController {
     private updateProductByIdApp: IUpdateProductByIdApplication,
     @Inject('ICreateProductApplication')
     private createProductApp: ICreateProductApplication,
-  ) {}
+  ) { }
 
   @Get('/:id')
   public async GetById(
@@ -68,6 +72,26 @@ export class ProductController {
     }
   }
 
+  @Get('filterByCategoryId/:categoryId')
+  public async GetByCategoryId(
+    @Res() res,
+    @Param('categoryId', new ParseUUIDPipe({ version: '4' })) categoryId: string,
+  ) {
+    try {
+      const products = await this.getProductByCategoryIdApp.getProductByCategoryId(categoryId);
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
+        data: products,
+      });
+    } catch (err) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
+    }
+  }
+
+
   @Delete('/:id')
   public async Delete(
     @Res() res,
@@ -91,11 +115,11 @@ export class ProductController {
   public async Update(
     @Res() res,
     @Param('id', new ParseUUIDPipe({ version: '4' })) productId: string,
-    @Body() productDto: Product,
+    @Body() productDto: AddOrUpdateProductDto,
   ) {
     try {
+      productDto.productId = productId;
       const product = await this.updateProductByIdApp.updateProductById(
-        productId,
         productDto,
       );
       return res.status(HttpStatus.OK).json({
@@ -111,7 +135,7 @@ export class ProductController {
   }
 
   @Post()
-  public async Create(@Res() res, @Body() productDto: Product) {
+  public async Create(@Res() res, @Body() productDto: AddOrUpdateProductDto) {
     try {
       const product = await this.createProductApp.createProduct(productDto);
       return res.status(HttpStatus.CREATED).json({

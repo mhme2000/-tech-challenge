@@ -3,24 +3,30 @@ import { PRODUCT_TYPES } from './types';
 import { IProductRepository } from '../domain/repositories/interfaces/ProductRepository.interface';
 import { IUpdateProductByIdApplication } from './interfaces/updateProductById.interface';
 import { Product } from '../domain/entities/Product.entity';
+import { AddOrUpdateProductDto } from '../domain/dtos/addOrUpdateProductDto';
+import { Category } from '../domain/entities/category.entity';
 
 @Injectable()
 export class UpdateProductByIdApplication
-  implements IUpdateProductByIdApplication
-{
+  implements IUpdateProductByIdApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) {}
+  ) { }
   async updateProductById(
-    productId: string,
-    product: Product,
+    productDto: AddOrUpdateProductDto,
   ): Promise<Product> {
-    const productOld = await this.productRepository.getById(productId);
-    if (product == null)
+    const productOld = await this.productRepository.getById(productDto.productId);
+    if (productOld == null)
       throw new HttpException('Product not found.', HttpStatus.NOT_FOUND);
-    productOld.name = product.name;
-    productOld.description = product.description;
-    return await this.productRepository.addOrUpdate(productOld);
+    var product: Product = {
+      id: productDto.productId,
+      name: productDto.name,
+      description: productDto.description,
+    }
+    product.category = Object.assign(new Category(), {
+      id: productDto.categoryId,
+    });
+    return await this.productRepository.addOrUpdate(product);
   }
 }

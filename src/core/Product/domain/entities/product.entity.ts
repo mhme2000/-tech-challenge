@@ -6,14 +6,14 @@ import { ApiHideProperty } from '@nestjs/swagger';
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   @ApiHideProperty()
-  id: string;
+  id?: string;
 
   @Column({
     name: 'creation_date',
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
-  creationDate: Date;
+  creationDate?: Date;
 
   @Column({
     name: 'name',
@@ -26,6 +26,6 @@ export class Product {
   description: string;
 
   @ManyToOne(() => Category, (category) => category.products)
-  category: Category;
+  category?: Category;
   //TODO Adicionar colunas restantes
 }

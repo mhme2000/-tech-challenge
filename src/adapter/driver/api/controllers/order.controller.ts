@@ -7,14 +7,16 @@ import {
   Res,
   HttpStatus,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { IGetOrderByIdApplication } from 'src/core/Order/application/interfaces/getOrderById.interface';
 
+@ApiTags('Order')
 @Controller('order')
 export class OrderController {
   constructor(
     @Inject('IGetOrderByIdApplication')
     private getOrderByIdApp: IGetOrderByIdApplication,
-  ) {}
+  ) { }
 
   @Get('/:id')
   public async Get(
