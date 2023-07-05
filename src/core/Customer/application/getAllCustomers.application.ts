@@ -9,7 +9,7 @@ export class GetAllCustomersApplication implements IGetAllCustomersApplication {
   constructor(
     @Inject(CUSTOMER_TYPES.repositories.ICustomerRepository)
     private customerRepository: ICustomerRepository,
-  ) { }
+  ) {}
   async getAllCustomers(): Promise<Customer[]> {
     return await this.customerRepository.get();
   }

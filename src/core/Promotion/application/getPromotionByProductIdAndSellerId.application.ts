@@ -1,25 +1,25 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IGetPromotionByProductIdAndSellerId } from './interfaces/getPromotionByProductIdAndSellerId.interface';
 import { Promotion } from '../domain/entities/promotion.entity';
 import { ORDER_TYPES } from '../types';
 import { IPromotionRepository } from '../domain/repositories/interfaces/promotionRepository.interface';
+import { IGetPromotionByProductIdAndStoreId } from './interfaces/getPromotionByProductIdAndSellerId.interface';
 
 @Injectable()
-export class GetPromotionByProductIdAndSellerId
-  implements IGetPromotionByProductIdAndSellerId
+export class GetPromotionByProductIdAndStoreId
+  implements IGetPromotionByProductIdAndStoreId
 {
   constructor(
     @Inject(ORDER_TYPES.repositories.IPromotionRepository)
     private promotionRepository: IPromotionRepository,
   ) {}
 
-  async getPromotionByProductIdAndSellerId(
+  async getPromotionByProductIdAndStoreId(
     productId: string,
-    sellerId: string,
+    storeId: string,
   ): Promise<Promotion> {
-    return await this.promotionRepository.getPromotionByProductIdAndSellerId(
+    return await this.promotionRepository.getPromotionByProductIdAndStoreId(
       productId,
-      sellerId,
+      storeId,
     );
   }
 }

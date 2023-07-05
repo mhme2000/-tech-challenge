@@ -8,7 +8,7 @@ import { Repository } from 'typeorm';
 export class CustomerRepository implements ICustomerRepository {
   constructor(
     @InjectRepository(Customer) private repository: Repository<Customer>,
-  ) { }
+  ) {}
   async getById(customerId: string): Promise<Customer> {
     return await this.repository.findOne({
       where: {

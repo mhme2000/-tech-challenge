@@ -5,11 +5,12 @@ import { IDeleteCustomerByIdApplication } from './interfaces/deleteCustomerById.
 
 @Injectable()
 export class DeleteCustomerByIdApplication
-  implements IDeleteCustomerByIdApplication {
+  implements IDeleteCustomerByIdApplication
+{
   constructor(
     @Inject(CUSTOMER_TYPES.repositories.ICustomerRepository)
     private customerRepository: ICustomerRepository,
-  ) { }
+  ) {}
   async deleteCustomerById(customerId: string): Promise<void> {
     const customer = await this.customerRepository.getById(customerId);
     if (customer == null)

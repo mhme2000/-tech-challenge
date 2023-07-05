@@ -32,7 +32,7 @@ export class CustomerController {
     private updateCustomerByIdApp: IUpdateCustomerByIdApplication,
     @Inject('ICreateCustomerApplication')
     private createCustomerApp: ICreateCustomerApplication,
-  ) { }
+  ) {}
 
   @Get('/:id')
   public async GetById(
@@ -40,7 +40,9 @@ export class CustomerController {
     @Param('id', new ParseUUIDPipe({ version: '4' })) customerId: string,
   ) {
     try {
-      const customer = await this.getCustomerByIdApp.getCustomerById(customerId);
+      const customer = await this.getCustomerByIdApp.getCustomerById(
+        customerId,
+      );
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
         data: customer,

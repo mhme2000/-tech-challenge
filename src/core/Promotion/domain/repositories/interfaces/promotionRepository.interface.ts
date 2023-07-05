@@ -1,8 +1,9 @@
 import { Promotion } from '../../entities/promotion.entity';
 
 export interface IPromotionRepository {
-  getPromotionByProductIdAndSellerId(
+  getPromotionByProductIdAndStoreId(
     productId: string,
-    sellerId: string,
+    storeId: string,
   ): Promise<Promotion>;
+  deleteByStoreId(storeId: string): Promise<void>;
 }

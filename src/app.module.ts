@@ -7,6 +7,12 @@ import { StoreModule } from './modules/store.module';
 import { CustomerModule } from './modules/customer.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(PSQLORMConfig), OrderModule, ProductModule, StoreModule, CustomerModule],
+  imports: [
+    TypeOrmModule.forRoot(PSQLORMConfig),
+    OrderModule,
+    ProductModule,
+    StoreModule,
+    CustomerModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

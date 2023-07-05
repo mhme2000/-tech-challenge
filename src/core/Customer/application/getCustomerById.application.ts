@@ -9,7 +9,7 @@ export class GetCustomerByIdApplication implements IGetCustomerByIdApplication {
   constructor(
     @Inject(CUSTOMER_TYPES.repositories.ICustomerRepository)
     private customerRepository: ICustomerRepository,
-  ) { }
+  ) {}
 
   async getCustomerById(id: string): Promise<Customer> {
     return await this.customerRepository.getById(id);

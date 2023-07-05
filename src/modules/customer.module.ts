@@ -47,4 +47,4 @@ const customerRepository = {
     customerRepository,
   ],
 })
-export class CustomerModule { }
+export class CustomerModule {}

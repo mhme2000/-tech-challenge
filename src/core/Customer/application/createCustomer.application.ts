@@ -10,7 +10,7 @@ export class CreateCustomerApplication implements ICreateCustomerApplication {
   constructor(
     @Inject(CUSTOMER_TYPES.repositories.ICustomerRepository)
     private customerRepository: ICustomerRepository,
-  ) { }
+  ) {}
   async createCustomer(customerDto: AddOrUpdateCustomerDto): Promise<Customer> {
     const customer: Customer = {
       name: customerDto.name,

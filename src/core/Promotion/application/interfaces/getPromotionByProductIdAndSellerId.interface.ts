@@ -1,8 +1,8 @@
 import { Promotion } from '../../domain/entities/promotion.entity';
 
-export interface IGetPromotionByProductIdAndSellerId {
-  getPromotionByProductIdAndSellerId(
+export interface IGetPromotionByProductIdAndStoreId {
+  getPromotionByProductIdAndStoreId(
     productId: string,
-    sellerId: string,
+    storeId: string,
   ): Promise<Promotion>;
 }

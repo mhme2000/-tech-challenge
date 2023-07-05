@@ -11,16 +11,19 @@ export class PromotionRepository implements IPromotionRepository {
     @InjectRepository(Promotion)
     private promotionRepository: Repository<Promotion>,
   ) {}
-  async getPromotionByProductIdAndSellerId(
+  async deleteByStoreId(storeId: string): Promise<void> {
+    await this.promotionRepository.delete({ storeId });
+  }
+  async getPromotionByProductIdAndStoreId(
     productId: string,
-    sellerId: string,
+    storeId: string,
   ): Promise<Promotion> {
     const currentDate = new Date().getTime();
     return await this.promotionRepository
       .createQueryBuilder('p')
       .innerJoin(ProductPromotion, 'pp', 'p.id = pp."ppomotionId"')
       .where('pp."productId" = :productId', { productId })
-      .andWhere('p."sellerId" = :sellerId', { sellerId })
+      .andWhere('p."storeId" = :storeId', { storeId })
       .andWhere('p."startDate" >= :currentDate', { currentDate })
       .andWhere('p."endDate" < :currentDate', { currentDate })
       .getOne();

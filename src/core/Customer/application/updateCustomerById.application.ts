@@ -7,12 +7,15 @@ import { AddOrUpdateCustomerDto } from '../domain/dtos/addOrUpdateCustomerDto';
 
 @Injectable()
 export class UpdateCustomerByIdApplication
-  implements IUpdateCustomerByIdApplication {
+  implements IUpdateCustomerByIdApplication
+{
   constructor(
     @Inject(CUSTOMER_TYPES.repositories.ICustomerRepository)
     private customerRepository: ICustomerRepository,
-  ) { }
-  async updateCustomerById(customerDto: AddOrUpdateCustomerDto): Promise<Customer> {
+  ) {}
+  async updateCustomerById(
+    customerDto: AddOrUpdateCustomerDto,
+  ): Promise<Customer> {
     const customerOld = await this.customerRepository.getById(
       customerDto.customerId,
     );

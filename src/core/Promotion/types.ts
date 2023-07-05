@@ -1,6 +1,7 @@
 export const ORDER_TYPES = {
   applications: {
-    IGetPromotionByProductIdAndSellerId: 'IGetPromotionByProductIdAndSellerId',
+    IGetPromotionByProductIdAndStoreId: 'IGetPromotionByProductIdAndStoreId',
+    IDeletePromotionsByStoreId: 'IDeletePromotionsByStoreId',
   },
   repositories: {
     IPromotionRepository: 'IPromotionRepository',
