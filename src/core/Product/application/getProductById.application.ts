@@ -9,7 +9,7 @@ export class GetProductByIdApplication implements IGetProductByIdApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
 
   async getProductById(id: string): Promise<Product> {
     return await this.productRepository.getById(id);

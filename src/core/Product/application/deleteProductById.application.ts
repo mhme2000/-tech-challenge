@@ -5,11 +5,12 @@ import { IDeleteProductByIdApplication } from './interfaces/deleteProductById.in
 
 @Injectable()
 export class DeleteProductByIdApplication
-  implements IDeleteProductByIdApplication {
+  implements IDeleteProductByIdApplication
+{
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
   async deleteProductById(productId: string): Promise<void> {
     const product = await this.productRepository.getById(productId);
     if (product == null)

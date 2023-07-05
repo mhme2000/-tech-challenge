@@ -11,6 +11,12 @@ export class Pricing {
   @Column({ name: 'product_id' })
   productId: string;
 
-  @Column({ name: 'total_price', type: "decimal", precision: 3, scale: 2, nullable: false })
+  @Column({
+    name: 'total_price',
+    type: 'decimal',
+    precision: 3,
+    scale: 2,
+    nullable: false,
+  })
   price: number;
 }

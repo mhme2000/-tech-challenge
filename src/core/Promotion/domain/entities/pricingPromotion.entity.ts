@@ -10,5 +10,4 @@ export class PricingPromotion {
 
   @Column({ name: 'promotion_id' })
   promotionId: string;
-
 }

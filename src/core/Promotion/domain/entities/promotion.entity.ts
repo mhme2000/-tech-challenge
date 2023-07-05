@@ -16,7 +16,7 @@ export class Promotion {
     name: 'start_date',
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
-    nullable: false
+    nullable: false,
   })
   startDate: Date;
 
@@ -24,21 +24,26 @@ export class Promotion {
     name: 'start_date',
     type: 'timestamp',
     default: () => null,
-    nullable: true
+    nullable: true,
   })
   endDate: Date;
 
   @Column({
-    type: "enum",
+    type: 'enum',
     enum: DiscountTypeEnum,
-    default: DiscountTypeEnum.CURRENCY
+    default: DiscountTypeEnum.CURRENCY,
   })
   discountType: DiscountTypeEnum;
 
-
-  @Column({ name: 'total_price', type: "decimal", nullable: false })
+  @Column({ name: 'total_price', type: 'decimal', nullable: false })
   discountValue: number;
 
-  @Column({ name: 'total_price', type: "decimal", precision: 3, scale: 2, nullable: false })
+  @Column({
+    name: 'total_price',
+    type: 'decimal',
+    precision: 3,
+    scale: 2,
+    nullable: false,
+  })
   price: number;
 }

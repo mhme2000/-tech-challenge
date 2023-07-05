@@ -32,7 +32,7 @@ export class StoreController {
     private updateStoreByIdApp: IUpdateStoreByIdApplication,
     @Inject('ICreateStoreApplication')
     private createStoreApp: ICreateStoreApplication,
-  ) { }
+  ) {}
 
   @Get('/:id')
   public async GetById(
@@ -96,9 +96,7 @@ export class StoreController {
   ) {
     try {
       storeDto.storeId = storeId;
-      const store = await this.updateStoreByIdApp.updateStoreById(
-        storeDto,
-      );
+      const store = await this.updateStoreByIdApp.updateStoreById(storeDto);
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
         data: store,

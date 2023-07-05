@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { OrderStatus } from './orderStatus.entity';
 import { OrderItem } from './orderItem.entity';
 
@@ -8,12 +15,12 @@ export class Order {
   id: string;
 
   @JoinColumn()
-  @OneToOne(() => OrderStatus) 
+  @OneToOne(() => OrderStatus)
   status: OrderStatus;
 
   @JoinColumn()
-  @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId) 
-  orderItems: OrderItem[]
+  @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId)
+  orderItems: OrderItem[];
 
   @Column({
     name: 'status',
@@ -22,13 +29,19 @@ export class Order {
   })
   creationDate: Date;
 
-  @Column({ name: 'prevision_delivery_date',
+  @Column({
+    name: 'prevision_delivery_date',
     type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP' 
+    default: () => 'CURRENT_TIMESTAMP',
   })
   previsionDeliveryDate: Date;
 
-  @Column({ name: 'total_price', type: "decimal", precision: 3, scale: 2, nullable: false })
+  @Column({
+    name: 'total_price',
+    type: 'decimal',
+    precision: 3,
+    scale: 2,
+    nullable: false,
+  })
   totalPrice: number;
-
 }

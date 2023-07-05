@@ -1,3 +1,4 @@
 export enum DiscountTypeEnum {
-    PERCENTAGE, CURRENCY
+  PERCENTAGE,
+  CURRENCY,
 }

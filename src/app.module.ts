@@ -6,6 +6,11 @@ import { ProductModule } from './modules/product.module';
 import { StoreModule } from './modules/store.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(PSQLORMConfig), OrderModule, ProductModule, StoreModule],
+  imports: [
+    TypeOrmModule.forRoot(PSQLORMConfig),
+    OrderModule,
+    ProductModule,
+    StoreModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

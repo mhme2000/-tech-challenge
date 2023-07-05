@@ -9,7 +9,7 @@ export class GetStoreByIdApplication implements IGetStoreByIdApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
-  ) { }
+  ) {}
 
   async getStoreById(id: string): Promise<Store> {
     return await this.storeRepository.getById(id);

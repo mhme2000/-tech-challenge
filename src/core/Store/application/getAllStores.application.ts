@@ -9,7 +9,7 @@ export class GetAllStoresApplication implements IGetAllStoresApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
-  ) { }
+  ) {}
   async getAllStores(): Promise<Store[]> {
     return await this.storeRepository.get();
   }

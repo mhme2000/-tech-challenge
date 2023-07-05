@@ -6,16 +6,13 @@ import { Store } from '../domain/entities/store.entity';
 import { AddOrUpdateStoreDto } from '../domain/dtos/addOrUpdateStoreDto';
 
 @Injectable()
-export class UpdateStoreByIdApplication
-  implements IUpdateStoreByIdApplication {
+export class UpdateStoreByIdApplication implements IUpdateStoreByIdApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
-  ) { }
+  ) {}
   async updateStoreById(storeDto: AddOrUpdateStoreDto): Promise<Store> {
-    const storeOld = await this.storeRepository.getById(
-      storeDto.storeId,
-    );
+    const storeOld = await this.storeRepository.getById(storeDto.storeId);
     if (storeOld == null)
       throw new HttpException('Store not found.', HttpStatus.NOT_FOUND);
     const store: Store = {

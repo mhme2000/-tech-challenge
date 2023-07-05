@@ -8,11 +8,12 @@ import { Category } from '../domain/entities/category.entity';
 
 @Injectable()
 export class UpdateProductByIdApplication
-  implements IUpdateProductByIdApplication {
+  implements IUpdateProductByIdApplication
+{
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
   async updateProductById(productDto: AddOrUpdateProductDto): Promise<Product> {
     const productOld = await this.productRepository.getById(
       productDto.productId,
