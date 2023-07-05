@@ -53,4 +53,4 @@ const productRepository = {
     productRepository,
   ],
 })
-export class ProductModule { }
+export class ProductModule {}

@@ -8,14 +8,14 @@ import { Repository } from 'typeorm';
 export class ProductRepository implements IProductRepository {
   constructor(
     @InjectRepository(Product) private repository: Repository<Product>,
-  ) { }
+  ) {}
   async getById(productId: string): Promise<Product> {
     return await this.repository.findOne({
       relations: {
         category: true,
       },
       where: {
-        id: productId
+        id: productId,
       },
     });
   }
@@ -26,10 +26,10 @@ export class ProductRepository implements IProductRepository {
       },
       where: {
         category: {
-          id: categoryId
+          id: categoryId,
         },
       },
-    })
+    });
   }
   async get(): Promise<Product[]> {
     return await this.repository.find({

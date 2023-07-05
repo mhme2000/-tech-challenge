@@ -11,12 +11,12 @@ export class CreateProductApplication implements ICreateProductApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
   async createProduct(productDto: AddOrUpdateProductDto): Promise<Product> {
-    var product: Product = {
+    const product: Product = {
       name: productDto.name,
       description: productDto.description,
-    }
+    };
     product.category = Object.assign(new Category(), {
       id: productDto.categoryId,
     });

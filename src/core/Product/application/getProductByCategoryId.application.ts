@@ -5,11 +5,13 @@ import { Product } from '../domain/entities/Product.entity';
 import { IGetProductByCategoryIdApplication } from './interfaces/getProductByCategoryId.interface';
 
 @Injectable()
-export class GetProductByCategoryIdApplication implements IGetProductByCategoryIdApplication {
+export class GetProductByCategoryIdApplication
+  implements IGetProductByCategoryIdApplication
+{
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
 
   async getProductByCategoryId(categoryId: string): Promise<Product[]> {
     return await this.productRepository.getByCategoryId(categoryId);

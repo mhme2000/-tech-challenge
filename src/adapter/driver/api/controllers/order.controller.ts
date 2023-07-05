@@ -16,7 +16,7 @@ export class OrderController {
   constructor(
     @Inject('IGetOrderByIdApplication')
     private getOrderByIdApp: IGetOrderByIdApplication,
-  ) { }
+  ) {}
 
   @Get('/:id')
   public async Get(
