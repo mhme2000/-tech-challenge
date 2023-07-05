@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class PricingPromotion {
+export class ProductPromotion {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'pricing_id' })
-  pricingId: string;
+  @Column({ name: 'product_id' })
+  productId: string;
 
   @Column({ name: 'promotion_id' })
   promotionId: string;
