@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { PRODUCT_TYPES } from './types';
+import { STORE_TYPES } from './types';
 import { IStoreRepository } from '../domain/repositories/interfaces/storeRepository.interface';
 import { IDeleteStoreByIdApplication } from './interfaces/deleteStoreById.interface';
 
@@ -7,7 +7,7 @@ import { IDeleteStoreByIdApplication } from './interfaces/deleteStoreById.interf
 export class DeleteStoreByIdApplication
   implements IDeleteStoreByIdApplication {
   constructor(
-    @Inject(PRODUCT_TYPES.repositories.IStoreRepository)
+    @Inject(STORE_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
   ) { }
   async deleteStoreById(storeId: string): Promise<void> {

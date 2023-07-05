@@ -1,4 +1,4 @@
-export const PRODUCT_TYPES = {
+export const STORE_TYPES = {
   applications: {
     IGetStoreByIdApplication: 'IGetStoreByIdApplication',
     IGetAllStoresApplication: 'IGetAllStoresApplication',
