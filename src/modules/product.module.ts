@@ -9,7 +9,7 @@ import { GetProductByCategoryIdApplication } from 'src/core/Product/application/
 import { GetProductByIdApplication } from 'src/core/Product/application/getProductById.application';
 import { PRODUCT_TYPES } from 'src/core/Product/application/types';
 import { UpdateProductByIdApplication } from 'src/core/Product/application/updateProductById.application';
-import { Product } from 'src/core/Product/domain/entities/Product.entity';
+import { Product } from 'src/core/Product/domain/entities/product.entity';
 // Product
 const getProductByIdApp = {
   provide: PRODUCT_TYPES.applications.IGetProductByIdApplication,
@@ -53,4 +53,4 @@ const productRepository = {
     productRepository,
   ],
 })
-export class ProductModule {}
+export class ProductModule { }

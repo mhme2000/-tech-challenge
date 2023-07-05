@@ -1,16 +1,15 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { PRODUCT_TYPES } from './types';
-import { IProductRepository } from '../domain/repositories/interfaces/ProductRepository.interface';
+import { IProductRepository } from '../domain/repositories/interfaces/productRepository.interface';
 import { IDeleteProductByIdApplication } from './interfaces/deleteProductById.interface';
 
 @Injectable()
 export class DeleteProductByIdApplication
-  implements IDeleteProductByIdApplication
-{
+  implements IDeleteProductByIdApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) {}
+  ) { }
   async deleteProductById(productId: string): Promise<void> {
     const product = await this.productRepository.getById(productId);
     if (product == null)

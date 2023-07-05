@@ -1,19 +1,18 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { PRODUCT_TYPES } from './types';
-import { IProductRepository } from '../domain/repositories/interfaces/ProductRepository.interface';
+import { IProductRepository } from '../domain/repositories/interfaces/productRepository.interface';
 import { IUpdateProductByIdApplication } from './interfaces/updateProductById.interface';
-import { Product } from '../domain/entities/Product.entity';
+import { Product } from '../domain/entities/product.entity';
 import { AddOrUpdateProductDto } from '../domain/dtos/addOrUpdateProductDto';
 import { Category } from '../domain/entities/category.entity';
 
 @Injectable()
 export class UpdateProductByIdApplication
-  implements IUpdateProductByIdApplication
-{
+  implements IUpdateProductByIdApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) {}
+  ) { }
   async updateProductById(productDto: AddOrUpdateProductDto): Promise<Product> {
     const productOld = await this.productRepository.getById(
       productDto.productId,

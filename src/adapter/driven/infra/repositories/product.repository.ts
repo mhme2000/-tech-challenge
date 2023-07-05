@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from 'src/core/Product/domain/entities/Product.entity';
-import { IProductRepository } from 'src/core/Product/domain/repositories/interfaces/ProductRepository.interface';
+import { Product } from 'src/core/Product/domain/entities/product.entity';
+import { IProductRepository } from 'src/core/Product/domain/repositories/interfaces/productRepository.interface';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductRepository implements IProductRepository {
   constructor(
     @InjectRepository(Product) private repository: Repository<Product>,
-  ) {}
+  ) { }
   async getById(productId: string): Promise<Product> {
     return await this.repository.findOne({
       relations: {
