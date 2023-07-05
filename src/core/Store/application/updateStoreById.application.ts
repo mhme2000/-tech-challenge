@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { PRODUCT_TYPES } from './types';
+import { STORE_TYPES } from './types';
 import { IStoreRepository } from '../domain/repositories/interfaces/StoreRepository.interface';
 import { IUpdateStoreByIdApplication } from './interfaces/updateStoreById.interface';
 import { Store } from '../domain/entities/store.entity';
@@ -8,7 +8,7 @@ import { AddOrUpdateStoreDto } from '../domain/dtos/addOrUpdateStoreDto';
 @Injectable()
 export class UpdateStoreByIdApplication implements IUpdateStoreByIdApplication {
   constructor(
-    @Inject(PRODUCT_TYPES.repositories.IStoreRepository)
+    @Inject(STORE_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
   ) {}
   async updateStoreById(storeDto: AddOrUpdateStoreDto): Promise<Store> {
