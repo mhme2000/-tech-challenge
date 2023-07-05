@@ -6,9 +6,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class StoreRepository implements IStoreRepository {
-  constructor(
-    @InjectRepository(Store) private repository: Repository<Store>,
-  ) { }
+  constructor(@InjectRepository(Store) private repository: Repository<Store>) {}
   async getById(storeId: string): Promise<Store> {
     return await this.repository.findOne({
       where: {

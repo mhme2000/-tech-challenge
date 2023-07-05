@@ -1,4 +1,4 @@
-import { Store } from "../../entities/store.entity";
+import { Store } from '../../entities/store.entity';
 
 export interface IStoreRepository {
   getById(storeId: string): Promise<Store>;

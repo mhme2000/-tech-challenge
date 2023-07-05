@@ -4,12 +4,11 @@ import { IStoreRepository } from '../domain/repositories/interfaces/storeReposit
 import { IDeleteStoreByIdApplication } from './interfaces/deleteStoreById.interface';
 
 @Injectable()
-export class DeleteStoreByIdApplication
-  implements IDeleteStoreByIdApplication {
+export class DeleteStoreByIdApplication implements IDeleteStoreByIdApplication {
   constructor(
     @Inject(STORE_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
-  ) { }
+  ) {}
   async deleteStoreById(storeId: string): Promise<void> {
     const store = await this.storeRepository.getById(storeId);
     if (store == null)

@@ -47,4 +47,4 @@ const storeRepository = {
     storeRepository,
   ],
 })
-export class StoreModule { }
+export class StoreModule {}

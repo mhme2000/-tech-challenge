@@ -11,7 +11,7 @@ export class CreateProductApplication implements ICreateProductApplication {
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
   async createProduct(productDto: AddOrUpdateProductDto): Promise<Product> {
     const product: Product = {
       name: productDto.name,

@@ -10,7 +10,7 @@ export class CreateStoreApplication implements ICreateStoreApplication {
   constructor(
     @Inject(STORE_TYPES.repositories.IStoreRepository)
     private storeRepository: IStoreRepository,
-  ) { }
+  ) {}
   async createStore(storeDto: AddOrUpdateStoreDto): Promise<Store> {
     const store: Store = {
       name: storeDto.name,

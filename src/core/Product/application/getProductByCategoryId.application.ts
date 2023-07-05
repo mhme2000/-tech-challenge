@@ -6,11 +6,12 @@ import { IGetProductByCategoryIdApplication } from './interfaces/getProductByCat
 
 @Injectable()
 export class GetProductByCategoryIdApplication
-  implements IGetProductByCategoryIdApplication {
+  implements IGetProductByCategoryIdApplication
+{
   constructor(
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
-  ) { }
+  ) {}
 
   async getProductByCategoryId(categoryId: string): Promise<Product[]> {
     return await this.productRepository.getByCategoryId(categoryId);
