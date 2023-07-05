@@ -12,14 +12,14 @@ export class PromotionRepository implements IPromotionRepository {
     private promotionRepository: Repository<Promotion>,
   ) {}
   async getPromotionByProductIdAndSellerId(
-    ppoductId: string,
+    productId: string,
     sellerId: string,
   ): Promise<Promotion> {
     const currentDate = new Date().getTime();
     return await this.promotionRepository
       .createQueryBuilder('p')
       .innerJoin(ProductPromotion, 'pp', 'p.id = pp."ppomotionId"')
-      .where('pp."ppoductId" = :ppoductId', { ppoductId })
+      .where('pp."productId" = :productId', { productId })
       .andWhere('p."sellerId" = :sellerId', { sellerId })
       .andWhere('p."startDate" >= :currentDate', { currentDate })
       .andWhere('p."endDate" < :currentDate', { currentDate })
