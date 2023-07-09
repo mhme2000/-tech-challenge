@@ -6,9 +6,15 @@ import { ProductModule } from './modules/product.module';
 import { StoreModule } from './modules/store.module';
 import { CustomerModule } from './modules/customer.module';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthController } from './adapter/driver/api/controllers/health.controller';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
+  controllers: [HealthController],
   imports: [
+    TerminusModule,
+    HttpModule,
     PrometheusModule.register(),
     TypeOrmModule.forRoot(PSQLORMConfig),
     OrderModule,
