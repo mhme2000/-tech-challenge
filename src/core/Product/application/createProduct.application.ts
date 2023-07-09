@@ -16,7 +16,7 @@ export class CreateProductApplication implements ICreateProductApplication {
       id: null,
       name: productDto.name,
       description: productDto.description,
-      creationDate: new Date()
+      creationDate: new Date(),
     };
     return await this.productRepository.addOrUpdate(product);
   }

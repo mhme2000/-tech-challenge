@@ -21,8 +21,8 @@ export class OrderRepository implements IOrderRepository {
     status: OrderStatusEnum,
   ): Promise<Order[]> {
     return await this.orderRepository
-      .createQueryBuilder("order")
-      .innerJoinAndSelect("order.statusId", "orderStatus")
+      .createQueryBuilder('order')
+      .innerJoinAndSelect('order.statusId', 'orderStatus')
       .where('orderStatus.status = :status', { status })
       .andWhere('order.storeId = :storeId', { storeId })
       .getMany();

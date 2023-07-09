@@ -56,7 +56,8 @@ export class OrderController {
   ) {
     try {
       const orders = await this.getOrderByStoreId.getByStoreId(storeId);
-      const statusCode = orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      const statusCode =
+        orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
       return res.status(statusCode).json({
         statusCode: statusCode,
         data: orders,
@@ -81,7 +82,8 @@ export class OrderController {
           storeId,
           status,
         );
-      const statusCode = orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      const statusCode =
+        orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
       return res.status(statusCode).json({
         statusCode: statusCode,
         data: orders,
