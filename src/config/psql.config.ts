@@ -8,5 +8,5 @@ export const PSQLORMConfig: PostgresConnectionOptions = {
   password: 'teste',
   database: 'tech-challenge',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: true,
+  synchronize: false,
 };

@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { STORE_TYPES } from './types';
-import { IStoreRepository } from '../domain/repositories/interfaces/StoreRepository.interface';
+import { IStoreRepository } from '../domain/repositories/interfaces/storeRepository.interface';
 import { IUpdateStoreByIdApplication } from './interfaces/updateStoreById.interface';
 import { Store } from '../domain/entities/store.entity';
 import { AddOrUpdateStoreDto } from '../domain/dtos/addOrUpdateStoreDto';

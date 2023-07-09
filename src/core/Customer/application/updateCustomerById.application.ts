@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { CUSTOMER_TYPES } from './types';
-import { ICustomerRepository } from '../domain/repositories/interfaces/CustomerRepository.interface';
+import { ICustomerRepository } from '../domain/repositories/interfaces/customerRepository.interface';
 import { IUpdateCustomerByIdApplication } from './interfaces/updateCustomerById.interface';
 import { Customer } from '../domain/entities/customer.entity';
 import { AddOrUpdateCustomerDto } from '../domain/dtos/addOrUpdateCustomerDto';
