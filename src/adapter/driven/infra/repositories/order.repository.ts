@@ -8,18 +8,23 @@ import { OrderStatus } from 'src/core/Order/domain/entities/orderStatus.entity';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
-  constructor(@InjectRepository(Order) private orderRepository: Repository<Order>) {}
+  constructor(
+    @InjectRepository(Order) private orderRepository: Repository<Order>,
+  ) {}
 
   async getByStoreId(storeId: string): Promise<Order[]> {
-    return await this.orderRepository.findBy({storeId});
+    return await this.orderRepository.findBy({ storeId });
   }
 
-  async getByStoreIdAndStatus(storeId: string, status: OrderStatusEnum): Promise<Order[]> {
+  async getByStoreIdAndStatus(
+    storeId: string,
+    status: OrderStatusEnum,
+  ): Promise<Order[]> {
     return await this.orderRepository
-      .createQueryBuilder('order')
-      .innerJoin(OrderStatus, 'orderStatus', 'orderStatus.id = order."status"')
-      .where('orderStatus."id" = :status', { status })
-      .andWhere('order."storeId" = :storeId', { storeId })
+      .createQueryBuilder("order")
+      .innerJoinAndSelect("order.statusId", "orderStatus")
+      .where('orderStatus.status = :status', { status })
+      .andWhere('order.storeId = :storeId', { storeId })
       .getMany();
   }
 

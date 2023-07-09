@@ -14,7 +14,7 @@ export class Customer {
   @PrimaryColumn({ name: 'email', nullable: false })
   email: string;
 
-  @PrimaryColumn({ name: 'document' , nullable: false })
+  @PrimaryColumn({ name: 'document', nullable: false })
   document: string;
 
   @CreateDateColumn({ name: 'creation_date', nullable: false })

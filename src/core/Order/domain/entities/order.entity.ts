@@ -17,15 +17,15 @@ export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @PrimaryColumn({name: 'store_id'})
+  @PrimaryColumn({ name: 'store_id' })
   storeId: string;
 
-  @PrimaryColumn({name: 'customer_id'})
+  @PrimaryColumn({ name: 'customer_id' })
   customerId: string;
 
-  @JoinColumn()
-  @ManyToOne(() => OrderStatus, (orderStatus: OrderStatus) => orderStatus.status)
-  status: OrderStatus;
+  @ManyToOne(() => OrderStatus, (orderStatus: OrderStatus) => orderStatus.id)
+  @JoinColumn({ name: "status_id" })
+  statusId: OrderStatus;
 
   @JoinColumn()
   @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId)

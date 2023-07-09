@@ -48,32 +48,18 @@ export class OrderController {
       });
     }
   }
-  
+
   @Get('/store/:storeId')
-  public async GetByStoreId(@Res() res, @Param('storeId', new ParseUUIDPipe({ version: '4' })) storeId: string) {
+  public async GetByStoreId(
+    @Res() res,
+    @Param('storeId', new ParseUUIDPipe({ version: '4' })) storeId: string,
+  ) {
     try {
-      const customer = await this.getOrderByStoreId.getByStoreId(storeId);
-      const statusCode = customer ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      const orders = await this.getOrderByStoreId.getByStoreId(storeId);
+      const statusCode = orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
       return res.status(statusCode).json({
         statusCode: statusCode,
-        data: customer
-      });
-    } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
-    }
-  }
-  
-  @Get('/store/:storeId/status/:status')
-  public async GetByStoreIdAndStatus(@Res() res, @Param('storeId', new ParseUUIDPipe({ version: '4' })) storeId: string, @Param('status') status: OrderStatusEnum) {
-    try {
-      const customer = await this.getOrderByStoreIdAndStatus.getByStoreIdAndStatus(storeId, status);
-      const statusCode = customer ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-      return res.status(statusCode).json({
-        statusCode: statusCode,
-        data: customer
+        data: orders,
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -83,4 +69,28 @@ export class OrderController {
     }
   }
 
+  @Get('/store/:storeId/status/:status')
+  public async GetByStoreIdAndStatus(
+    @Res() res,
+    @Param('storeId', new ParseUUIDPipe({ version: '4' })) storeId: string,
+    @Param('status') status: OrderStatusEnum,
+  ) {
+    try {
+      const orders =
+        await this.getOrderByStoreIdAndStatus.getByStoreIdAndStatus(
+          storeId,
+          status,
+        );
+      const statusCode = orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
+        data: orders,
+      });
+    } catch (err) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
+    }
+  }
 }

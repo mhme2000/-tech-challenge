@@ -12,12 +12,11 @@ export class CreateProductApplication implements ICreateProductApplication {
     private productRepository: IProductRepository,
   ) {}
   async createProduct(productDto: AddOrUpdateProductDto): Promise<Product> {
-    const product: Product = {
+    const product: Partial<Product> = {
       id: null,
       name: productDto.name,
       description: productDto.description,
-      creationDate: new Date(),
-      categoryId: productDto.categoryId,
+      creationDate: new Date()
     };
     return await this.productRepository.addOrUpdate(product);
   }

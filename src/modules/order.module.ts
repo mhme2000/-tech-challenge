@@ -32,6 +32,11 @@ const orderRepository = {
 @Module({
   controllers: [OrderController],
   imports: [TypeOrmModule.forFeature([Order])],
-  providers: [getOrderByIdApp, orderRepository, getOrdersByStoreId, getOrdersByStoreIdAndStatus],
+  providers: [
+    getOrderByIdApp,
+    orderRepository,
+    getOrdersByStoreId,
+    getOrdersByStoreIdAndStatus,
+  ],
 })
 export class OrderModule {}

@@ -19,11 +19,10 @@ export class UpdateProductByIdApplication
     );
     if (productOld == null)
       throw new HttpException('Product not found.', HttpStatus.NOT_FOUND);
-    const product: Product = {
+    const product: Partial<Product> = {
       id: productDto.productId,
       name: productDto.name,
       description: productDto.description,
-      categoryId: productDto.categoryId,
       creationDate: productOld.creationDate,
     };
     return await this.productRepository.addOrUpdate(product);

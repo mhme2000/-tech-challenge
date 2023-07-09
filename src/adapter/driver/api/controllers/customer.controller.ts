@@ -23,7 +23,7 @@ export class CustomerController {
   constructor(
     @Inject(CUSTOMER_TYPES.applications.ICreateCustomerApplication)
     private createCustomerApplication: ICreateCustomerApplication,
-    
+
     @Inject(CUSTOMER_TYPES.applications.IGetCustomerByDocumentApplication)
     private getCustomerByDocumentApplication: IGetCustomerByDocumentApplication,
   ) {}
@@ -31,12 +31,14 @@ export class CustomerController {
   @Post()
   public async Create(@Res() res, @Body() customerDto: CustomerDTO) {
     try {
-      const customerId = await this.createCustomerApplication.createCustomer(CustomerMapper.dtoToEntity(customerDto));
+      const customerId = await this.createCustomerApplication.createCustomer(
+        CustomerMapper.dtoToEntity(customerDto),
+      );
       return res.status(HttpStatus.CREATED).json({
         statusCode: HttpStatus.CREATED,
         data: {
-          id: customerId
-        }
+          id: customerId,
+        },
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -50,10 +52,11 @@ export class CustomerController {
   @Patch('/document/{document}')
   public async GetByDocument(@Res() res, @Param('document') document: string) {
     try {
-      const customer = await this.getCustomerByDocumentApplication.getByDocument(document);
+      const customer =
+        await this.getCustomerByDocumentApplication.getByDocument(document);
       return res.status(HttpStatus.CREATED).json({
         statusCode: HttpStatus.CREATED,
-        data: customer
+        data: customer,
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({

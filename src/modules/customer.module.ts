@@ -24,10 +24,6 @@ const customerRepository = {
 @Module({
   controllers: [CustomerController],
   imports: [TypeOrmModule.forFeature([Customer])],
-  providers: [
-    createCustomerApp,
-    getCustomerByDocumentApp,
-    customerRepository
-  ],
+  providers: [createCustomerApp, getCustomerByDocumentApp, customerRepository],
 })
 export class CustomerModule {}

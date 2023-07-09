@@ -1,1 +1,1 @@
-export * from './IsCPF.validator'
+export * from './IsCPF.validator';

@@ -1,1 +1,1 @@
-export * from './IsCPF'
+export * from './IsCPF';

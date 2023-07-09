@@ -7,14 +7,15 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class CustomerRepository implements ICustomerRepository {
   constructor(
-    @InjectRepository(Customer) private customerRepository: Repository<Customer>,
+    @InjectRepository(Customer)
+    private customerRepository: Repository<Customer>,
   ) {}
 
   async getByDocument(document: string): Promise<Customer> {
-    return await this.customerRepository.findOneBy({document});
+    return await this.customerRepository.findOneBy({ document });
   }
-  
-  async  create(customer: Partial<Customer>): Promise<string> {
+
+  async create(customer: Partial<Customer>): Promise<string> {
     const newCustomer = this.customerRepository.create(customer);
     const savedCustomer = await this.customerRepository.save(newCustomer);
     return savedCustomer.id;
