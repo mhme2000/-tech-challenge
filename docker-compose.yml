@@ -42,7 +42,9 @@ services:
     container_name: grafana
     image: grafana/grafana:8.1.5
     ports:
-      - "3001:3000"          
+      - "3001:3000"  
+    depends_on:
+      - prometheus        
     volumes:
       - ./grafana/data:/var/lib/grafana
     networks:
