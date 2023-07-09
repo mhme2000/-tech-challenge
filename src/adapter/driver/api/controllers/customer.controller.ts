@@ -3,49 +3,40 @@ import {
   Get,
   Param,
   Inject,
-  ParseUUIDPipe,
   Res,
   HttpStatus,
-  Delete,
-  Put,
   Post,
   Body,
+  Patch,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ICreateCustomerApplication } from '../../../../core/Customer/application/interfaces/createCustomer.interface';
-import { IDeleteCustomerByIdApplication } from '../../../../core/Customer/application/interfaces/deleteCustomerById.interface';
-import { IGetAllCustomersApplication } from '../../../../core/Customer/application/interfaces/getAllCustomers.interface';
-import { IGetCustomerByIdApplication } from '../../../../core/Customer/application/interfaces/getCustomerById.interface';
-import { IUpdateCustomerByIdApplication } from '../../../../core/Customer/application/interfaces/updateCustomerById.interface';
-import { AddOrUpdateCustomerDto } from '../../../../core/Customer/domain/dtos/addOrUpdateCustomerDto';
+import { CUSTOMER_TYPES } from 'src/core/Customer/types';
+import { CustomerDTO } from '../../dtos/CustomerDTO.dto';
+import { CustomerMapper } from '../../mappers/customerMapper.mapper';
+import { IGetCustomerByDocumentApplication } from 'src/core/Customer/application/interfaces/getCustomerByDocument.interface';
+import { OrderStatusEnum } from 'src/core/Order/domain/enums/orderStatus.enum';
+
 @ApiTags('Customer')
 @Controller('customer')
 export class CustomerController {
   constructor(
-    @Inject('IGetCustomerByIdApplication')
-    private getCustomerByIdApp: IGetCustomerByIdApplication,
-    @Inject('IGetAllCustomersApplication')
-    private getAllCustomersApp: IGetAllCustomersApplication,
-    @Inject('IDeleteCustomerByIdApplication')
-    private deleteCustomerByIdApp: IDeleteCustomerByIdApplication,
-    @Inject('IUpdateCustomerByIdApplication')
-    private updateCustomerByIdApp: IUpdateCustomerByIdApplication,
-    @Inject('ICreateCustomerApplication')
-    private createCustomerApp: ICreateCustomerApplication,
+    @Inject(CUSTOMER_TYPES.applications.ICreateCustomerApplication)
+    private createCustomerApplication: ICreateCustomerApplication,
+    
+    @Inject(CUSTOMER_TYPES.applications.IGetCustomerByDocumentApplication)
+    private getCustomerByDocumentApplication: IGetCustomerByDocumentApplication,
   ) {}
 
-  @Get('/:id')
-  public async GetById(
-    @Res() res,
-    @Param('id', new ParseUUIDPipe({ version: '4' })) customerId: string,
-  ) {
+  @Post()
+  public async Create(@Res() res, @Body() customerDto: CustomerDTO) {
     try {
-      const customer = await this.getCustomerByIdApp.getCustomerById(
-        customerId,
-      );
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: customer,
+      const customerId = await this.createCustomerApplication.createCustomer(CustomerMapper.dtoToEntity(customerDto));
+      return res.status(HttpStatus.CREATED).json({
+        statusCode: HttpStatus.CREATED,
+        data: {
+          id: customerId
+        }
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -56,70 +47,13 @@ export class CustomerController {
   }
 
   @Get()
-  public async Get(@Res() res) {
+  @Patch('/document/{document}')
+  public async GetByDocument(@Res() res, @Param('document') document: string) {
     try {
-      const customers = await this.getAllCustomersApp.getAllCustomers();
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: customers,
-      });
-    } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
-    }
-  }
-
-  @Delete('/:id')
-  public async Delete(
-    @Res() res,
-    @Param('id', new ParseUUIDPipe({ version: '4' })) customerId: string,
-  ) {
-    try {
-      await this.deleteCustomerByIdApp.deleteCustomerById(customerId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: null,
-      });
-    } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
-    }
-  }
-
-  @Put('/:id')
-  public async Update(
-    @Res() res,
-    @Param('id', new ParseUUIDPipe({ version: '4' })) customerId: string,
-    @Body() customerDto: AddOrUpdateCustomerDto,
-  ) {
-    try {
-      customerDto.customerId = customerId;
-      const customer = await this.updateCustomerByIdApp.updateCustomerById(
-        customerDto,
-      );
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: customer,
-      });
-    } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
-    }
-  }
-
-  @Post()
-  public async Create(@Res() res, @Body() customerDto: AddOrUpdateCustomerDto) {
-    try {
-      const customer = await this.createCustomerApp.createCustomer(customerDto);
+      const customer = await this.getCustomerByDocumentApplication.getByDocument(document);
       return res.status(HttpStatus.CREATED).json({
         statusCode: HttpStatus.CREATED,
-        data: customer,
+        data: customer
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({

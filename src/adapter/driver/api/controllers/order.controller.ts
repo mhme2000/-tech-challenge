@@ -6,16 +6,27 @@ import {
   ParseUUIDPipe,
   Res,
   HttpStatus,
+  Patch,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IGetOrderByIdApplication } from '../../../../core/Order/application/interfaces/getOrderById.interface';
+import { ORDER_TYPES } from 'src/core/Order/types';
+import { IGetOrdersByStoreIdAndStatus } from 'src/core/Order/application/interfaces/getOrdersByStoreIdAndStatus.interface';
+import { IGetOrdersByStoreId } from 'src/core/Order/application/interfaces/getOrdersByStoreId.interface';
+import { OrderStatusEnum } from 'src/core/Order/domain/enums/orderStatus.enum';
 
 @ApiTags('Order')
 @Controller('order')
 export class OrderController {
   constructor(
-    @Inject('IGetOrderByIdApplication')
+    @Inject(ORDER_TYPES.applications.IGetOrderByIdApplication)
     private getOrderByIdApp: IGetOrderByIdApplication,
+
+    @Inject(ORDER_TYPES.applications.IGetOrdersByStoreId)
+    private getOrderByStoreId: IGetOrdersByStoreId,
+
+    @Inject(ORDER_TYPES.applications.IGetOrdersByStoreIdAndStatus)
+    private getOrderByStoreIdAndStatus: IGetOrdersByStoreIdAndStatus,
   ) {}
 
   @Get('/:id')
@@ -25,8 +36,9 @@ export class OrderController {
   ) {
     try {
       const order = await this.getOrderByIdApp.getOrderById(orderId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
+      const statusCode = order ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
         data: order,
       });
     } catch (err) {
@@ -36,4 +48,39 @@ export class OrderController {
       });
     }
   }
+  
+  @Get('/store/:storeId')
+  public async GetByStoreId(@Res() res, @Param('storeId', new ParseUUIDPipe({ version: '4' })) storeId: string) {
+    try {
+      const customer = await this.getOrderByStoreId.getByStoreId(storeId);
+      const statusCode = customer ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
+        data: customer
+      });
+    } catch (err) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
+    }
+  }
+  
+  @Get('/store/:storeId/status/:status')
+  public async GetByStoreIdAndStatus(@Res() res, @Param('storeId', new ParseUUIDPipe({ version: '4' })) storeId: string, @Param('status') status: OrderStatusEnum) {
+    try {
+      const customer = await this.getOrderByStoreIdAndStatus.getByStoreIdAndStatus(storeId, status);
+      const statusCode = customer ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
+        data: customer
+      });
+    } catch (err) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
+    }
+  }
+
 }

@@ -7,7 +7,7 @@ export class OrderStatus {
   id: string;
 
   @Column({
-    type: 'enum',
+    type: 'text',
     enum: OrderStatusEnum,
     default: OrderStatusEnum.RECEIVED,
   })

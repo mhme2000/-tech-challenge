@@ -2,26 +2,24 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ApiHideProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Customer {
   @PrimaryGeneratedColumn('uuid')
-  @ApiHideProperty()
   id: string;
 
-  @CreateDateColumn({ name: 'creation_date' })
+  @PrimaryColumn({ name: 'email', nullable: false })
+  email: string;
+
+  @PrimaryColumn({ name: 'document' , nullable: false })
+  document: string;
+
+  @CreateDateColumn({ name: 'creation_date', nullable: false })
   creationDate: Date;
 
-  @Column({
-    name: 'name',
-  })
+  @Column({ name: 'name', nullable: false })
   name: string;
-
-  @Column({
-    name: 'document',
-  })
-  document: string;
 }

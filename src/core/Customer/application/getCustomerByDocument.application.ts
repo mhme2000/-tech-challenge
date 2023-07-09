@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IGetCustomerByIdApplication } from './interfaces/getCustomerById.interface';
-import { CUSTOMER_TYPES } from './types';
+import { CUSTOMER_TYPES } from '../types';
 import { ICustomerRepository } from '../domain/repositories/interfaces/customerRepository.interface';
 import { Customer } from '../domain/entities/customer.entity';
+import { IGetCustomerByDocumentApplication } from './interfaces/getCustomerByDocument.interface';
 
 @Injectable()
-export class GetCustomerByIdApplication implements IGetCustomerByIdApplication {
+export class GetCustomerByDocumentApplication implements IGetCustomerByDocumentApplication {
   constructor(
     @Inject(CUSTOMER_TYPES.repositories.ICustomerRepository)
     private customerRepository: ICustomerRepository,
   ) {}
 
-  async getCustomerById(id: string): Promise<Customer> {
-    return await this.customerRepository.getById(id);
+  async getByDocument(document: string): Promise<Customer> {
+    return await this.customerRepository.getByDocument(document);
   }
 }

@@ -13,10 +13,10 @@ import { dataSourceOptions } from './db/datasource';
 @Module({
   controllers: [HealthController],
   imports: [
+    TypeOrmModule.forRoot(dataSourceOptions),
     TerminusModule,
     HttpModule,
     PrometheusModule.register(),
-    TypeOrmModule.forRoot(dataSourceOptions),
     OrderModule,
     ProductModule,
     StoreModule,

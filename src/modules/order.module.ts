@@ -5,11 +5,25 @@ import { OrderController } from '../adapter/driver/api/controllers/order.control
 import { GetOrderByIdApplication } from '../core/Order/application/getOrderById.application';
 import { Order } from '../core/Order/domain/entities/order.entity';
 import { ORDER_TYPES } from '../core/Order/types';
+import { GetOrdersByStoreId } from 'src/core/Order/application/getOrdersByStoreId.application';
+import { GetOrdersByStoreIdAndStatus } from 'src/core/Order/application/getOrdersByStoreIdAndStatus.application';
+
 // Order
 const getOrderByIdApp = {
   provide: ORDER_TYPES.applications.IGetOrderByIdApplication,
   useClass: GetOrderByIdApplication,
 };
+
+const getOrdersByStoreId = {
+  provide: ORDER_TYPES.applications.IGetOrdersByStoreId,
+  useClass: GetOrdersByStoreId,
+};
+
+const getOrdersByStoreIdAndStatus = {
+  provide: ORDER_TYPES.applications.IGetOrdersByStoreIdAndStatus,
+  useClass: GetOrdersByStoreIdAndStatus,
+};
+
 const orderRepository = {
   provide: ORDER_TYPES.repositories.IOrderRepository,
   useClass: OrderRepository,
@@ -18,6 +32,6 @@ const orderRepository = {
 @Module({
   controllers: [OrderController],
   imports: [TypeOrmModule.forFeature([Order])],
-  providers: [getOrderByIdApp, orderRepository],
+  providers: [getOrderByIdApp, orderRepository, getOrdersByStoreId, getOrdersByStoreIdAndStatus],
 })
 export class OrderModule {}

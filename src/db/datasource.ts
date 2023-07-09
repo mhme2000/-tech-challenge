@@ -13,6 +13,7 @@ export const dataSourceOptions: TypeOrmModuleOptions &
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: ['dist/core/**/*.entity.js'],
+  cache: false,
   synchronize: false,
   migrationsRun: false,
   migrations: ['dist/db/migrations/*.js'],

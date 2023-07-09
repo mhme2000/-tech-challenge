@@ -3,8 +3,10 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { OrderStatus } from './orderStatus.entity';
@@ -15,8 +17,14 @@ export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @PrimaryColumn({name: 'store_id'})
+  storeId: string;
+
+  @PrimaryColumn({name: 'customer_id'})
+  customerId: string;
+
   @JoinColumn()
-  @OneToOne(() => OrderStatus)
+  @ManyToOne(() => OrderStatus, (orderStatus: OrderStatus) => orderStatus.status)
   status: OrderStatus;
 
   @JoinColumn()
@@ -36,7 +44,7 @@ export class Order {
   @Column({
     name: 'total_price',
     type: 'decimal',
-    precision: 3,
+    precision: 5,
     scale: 2,
     nullable: false,
   })
