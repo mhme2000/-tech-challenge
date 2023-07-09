@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Category {
@@ -9,10 +14,12 @@ export class Category {
   storeId: string;
 
   @Column({
+    name: 'name',
+  })
+  name: string;
+
+  @Column({
     name: 'description',
   })
   description: string;
-
-  @Column({ name: 'product_id' })
-  productId: string;
 }

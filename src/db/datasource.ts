@@ -18,6 +18,4 @@ export const dataSourceOptions: TypeOrmModuleOptions &
   migrations: ['dist/db/migrations/*.js'],
 };
 
-console.log(dataSourceOptions);
-
 export const datasource = new DataSource(dataSourceOptions);

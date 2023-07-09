@@ -1,14 +1,20 @@
 services:
   api:
     container_name: api
-    build: ./
+    build: .
+        
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
-      - PROMETHEUS_ENDPOINT=http://prometheus:9090
+      NODE_ENV: production
+      PROMETHEUS_ENDPOINT: http://prometheus:9090
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: 'postgres'
     depends_on:
       - prometheus
+      - postgres
     networks:
       - nest-js-network
 
@@ -48,6 +54,7 @@ services:
       - prometheus        
     volumes:
       - ./grafana/data:/var/lib/grafana
+    user: 'root:root'
     networks:
       - nest-js-network
 

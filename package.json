@@ -22,7 +22,8 @@
     "typeorm": "yarn build && npx typeorm -d dist/db/datasource.js",
     "migration:generate": "yarn typeorm -- migration:generate",
     "migration:run": "yarn typeorm -- migration:run",
-    "migration:revert": "yarn typeorm -- migration:revert"
+    "migration:revert": "yarn typeorm -- migration:revert",
+    "migration:create": "npx typeorm migration:create"
   },
   "dependencies": {
     "@nestjs/axios": "3.0.0",
