@@ -12,13 +12,13 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ICreateProductApplication } from 'src/core/Product/application/interfaces/createProduct.interface';
-import { IDeleteProductByIdApplication } from 'src/core/Product/application/interfaces/deleteProductById.interface';
-import { IGetAllProductsApplication } from 'src/core/Product/application/interfaces/getAllProducts.interface';
-import { IGetProductByCategoryIdApplication } from 'src/core/Product/application/interfaces/getProductByCategoryId.interface';
-import { IGetProductByIdApplication } from 'src/core/Product/application/interfaces/getProductById.interface';
-import { IUpdateProductByIdApplication } from 'src/core/Product/application/interfaces/updateProductById.interface';
-import { AddOrUpdateProductDto } from 'src/core/Product/domain/dtos/addOrUpdateProductDto';
+import { ICreateProductApplication } from '../../../../core/Product/application/interfaces/createProduct.interface';
+import { IDeleteProductByIdApplication } from '../../../../core/Product/application/interfaces/deleteProductById.interface';
+import { IGetAllProductsApplication } from '../../../../core/Product/application/interfaces/getAllProducts.interface';
+import { IGetProductByCategoryIdApplication } from '../../../../core/Product/application/interfaces/getProductByCategoryId.interface';
+import { IGetProductByIdApplication } from '../../../../core/Product/application/interfaces/getProductById.interface';
+import { IUpdateProductByIdApplication } from '../../../../core/Product/application/interfaces/updateProductById.interface';
+import { AddOrUpdateProductDto } from '../../../../core/Product/domain/dtos/addOrUpdateProductDto';
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {

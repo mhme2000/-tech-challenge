@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductRepository } from 'src/adapter/driven/infra/repositories/product.repository';
-import { ProductController } from 'src/adapter/driver/api/controllers/product.controller';
-import { CreateProductApplication } from 'src/core/Product/application/createProduct.application';
-import { DeleteProductByIdApplication } from 'src/core/Product/application/deleteProductById.application';
-import { GetAllProductsApplication } from 'src/core/Product/application/getAllProducts.application';
-import { GetProductByCategoryIdApplication } from 'src/core/Product/application/getProductByCategoryId.application';
-import { GetProductByIdApplication } from 'src/core/Product/application/getProductById.application';
-import { PRODUCT_TYPES } from 'src/core/Product/application/types';
-import { UpdateProductByIdApplication } from 'src/core/Product/application/updateProductById.application';
-import { Product } from 'src/core/Product/domain/entities/product.entity';
+import { ProductRepository } from '../adapter/driven/infra/repositories/product.repository';
+import { ProductController } from '../adapter/driver/api/controllers/product.controller';
+import { CreateProductApplication } from '../core/Product/application/createProduct.application';
+import { DeleteProductByIdApplication } from '../core/Product/application/deleteProductById.application';
+import { GetAllProductsApplication } from '../core/Product/application/getAllProducts.application';
+import { GetProductByCategoryIdApplication } from '../core/Product/application/getProductByCategoryId.application';
+import { GetProductByIdApplication } from '../core/Product/application/getProductById.application';
+import { PRODUCT_TYPES } from '../core/Product/application/types';
+import { UpdateProductByIdApplication } from '../core/Product/application/updateProductById.application';
+import { Product } from '../core/Product/domain/entities/product.entity';
 // Product
 const getProductByIdApp = {
   provide: PRODUCT_TYPES.applications.IGetProductByIdApplication,

@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { StoreRepository } from 'src/adapter/driven/infra/repositories/store.repository';
-import { StoreController } from 'src/adapter/driver/api/controllers/store.controller';
-import { CreateStoreApplication } from 'src/core/Store/application/createStore.application';
-import { DeleteStoreByIdApplication } from 'src/core/Store/application/deleteStoreById.application';
-import { GetAllStoresApplication } from 'src/core/Store/application/getAllStores.application';
-import { GetStoreByIdApplication } from 'src/core/Store/application/getStoreById.application';
-import { STORE_TYPES } from 'src/core/Store/application/types';
-import { UpdateStoreByIdApplication } from 'src/core/Store/application/updateStoreById.application';
-import { Store } from 'src/core/Store/domain/entities/store.entity';
+import { StoreRepository } from '../adapter/driven/infra/repositories/store.repository';
+import { StoreController } from '../adapter/driver/api/controllers/store.controller';
+import { CreateStoreApplication } from '../core/Store/application/createStore.application';
+import { DeleteStoreByIdApplication } from '../core/Store/application/deleteStoreById.application';
+import { GetAllStoresApplication } from '../core/Store/application/getAllStores.application';
+import { GetStoreByIdApplication } from '../core/Store/application/getStoreById.application';
+import { STORE_TYPES } from '../core/Store/application/types';
+import { UpdateStoreByIdApplication } from '../core/Store/application/updateStoreById.application';
+import { Store } from '../core/Store/domain/entities/store.entity';
 // Store
 const getStoreByIdApp = {
   provide: STORE_TYPES.applications.IGetStoreByIdApplication,

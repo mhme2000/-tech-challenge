@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductPromotion } from 'src/core/Promotion/domain/entities/productPromotion.entity';
-import { Promotion } from 'src/core/Promotion/domain/entities/promotion.entity';
-import { IPromotionRepository } from 'src/core/Promotion/domain/repositories/interfaces/promotionRepository.interface';
+import { ProductPromotion } from '../../../../core/Promotion/domain/entities/productPromotion.entity';
+import { Promotion } from '../../../../core/Promotion/domain/entities/promotion.entity';
+import { IPromotionRepository } from '../../../../core/Promotion/domain/repositories/interfaces/promotionRepository.interface';
 import { Repository } from 'typeorm';
 
 @Injectable()

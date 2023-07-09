@@ -12,12 +12,12 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ICreateCustomerApplication } from 'src/core/Customer/application/interfaces/createCustomer.interface';
-import { IDeleteCustomerByIdApplication } from 'src/core/Customer/application/interfaces/deleteCustomerById.interface';
-import { IGetAllCustomersApplication } from 'src/core/Customer/application/interfaces/getAllCustomers.interface';
-import { IGetCustomerByIdApplication } from 'src/core/Customer/application/interfaces/getCustomerById.interface';
-import { IUpdateCustomerByIdApplication } from 'src/core/Customer/application/interfaces/updateCustomerById.interface';
-import { AddOrUpdateCustomerDto } from 'src/core/Customer/domain/dtos/addOrUpdateCustomerDto';
+import { ICreateCustomerApplication } from '../../../../core/Customer/application/interfaces/createCustomer.interface';
+import { IDeleteCustomerByIdApplication } from '../../../../core/Customer/application/interfaces/deleteCustomerById.interface';
+import { IGetAllCustomersApplication } from '../../../../core/Customer/application/interfaces/getAllCustomers.interface';
+import { IGetCustomerByIdApplication } from '../../../../core/Customer/application/interfaces/getCustomerById.interface';
+import { IUpdateCustomerByIdApplication } from '../../../../core/Customer/application/interfaces/updateCustomerById.interface';
+import { AddOrUpdateCustomerDto } from '../../../../core/Customer/domain/dtos/addOrUpdateCustomerDto';
 @ApiTags('Customer')
 @Controller('customer')
 export class CustomerController {

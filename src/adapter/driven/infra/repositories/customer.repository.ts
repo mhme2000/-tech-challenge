@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Customer } from 'src/core/Customer/domain/entities/customer.entity';
-import { ICustomerRepository } from 'src/core/Customer/domain/repositories/interfaces/customerRepository.interface';
+import { Customer } from '../../../../core/Customer/domain/entities/customer.entity';
+import { ICustomerRepository } from '../../../..//core/Customer/domain/repositories/interfaces/customerRepository.interface';
 import { Repository } from 'typeorm';
 
 @Injectable()

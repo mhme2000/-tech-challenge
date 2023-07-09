@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CustomerRepository } from 'src/adapter/driven/infra/repositories/customer.repository';
-import { CustomerController } from 'src/adapter/driver/api/controllers/customer.controller';
-import { CreateCustomerApplication } from 'src/core/Customer/application/createCustomer.application';
-import { DeleteCustomerByIdApplication } from 'src/core/Customer/application/deleteCustomerById.application';
-import { GetAllCustomersApplication } from 'src/core/Customer/application/getAllCustomers.application';
-import { GetCustomerByIdApplication } from 'src/core/Customer/application/getCustomerById.application';
-import { CUSTOMER_TYPES } from 'src/core/Customer/application/types';
-import { UpdateCustomerByIdApplication } from 'src/core/Customer/application/updateCustomerById.application';
-import { Customer } from 'src/core/Customer/domain/entities/customer.entity';
+import { CustomerRepository } from '../adapter/driven/infra/repositories/customer.repository';
+import { CustomerController } from '../adapter/driver/api/controllers/customer.controller';
+import { CreateCustomerApplication } from '../core/Customer/application/createCustomer.application';
+import { DeleteCustomerByIdApplication } from '../core/Customer/application/deleteCustomerById.application';
+import { GetAllCustomersApplication } from '../core/Customer/application/getAllCustomers.application';
+import { GetCustomerByIdApplication } from '../core/Customer/application/getCustomerById.application';
+import { CUSTOMER_TYPES } from '../core/Customer/application/types';
+import { UpdateCustomerByIdApplication } from '../core/Customer/application/updateCustomerById.application';
+import { Customer } from '../core/Customer/domain/entities/customer.entity';
 // Customer
 const getCustomerByIdApp = {
   provide: CUSTOMER_TYPES.applications.IGetCustomerByIdApplication,

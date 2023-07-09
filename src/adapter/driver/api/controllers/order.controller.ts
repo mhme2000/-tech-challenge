@@ -8,7 +8,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { IGetOrderByIdApplication } from 'src/core/Order/application/interfaces/getOrderById.interface';
+import { IGetOrderByIdApplication } from '../../../../core/Order/application/interfaces/getOrderById.interface';
 
 @ApiTags('Order')
 @Controller('order')

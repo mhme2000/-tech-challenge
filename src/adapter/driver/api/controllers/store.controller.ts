@@ -12,12 +12,12 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ICreateStoreApplication } from 'src/core/Store/application/interfaces/createStore.interface';
-import { IDeleteStoreByIdApplication } from 'src/core/Store/application/interfaces/deleteStoreById.interface';
-import { IGetAllStoresApplication } from 'src/core/Store/application/interfaces/getAllStores.interface';
-import { IGetStoreByIdApplication } from 'src/core/Store/application/interfaces/getStoreById.interface';
-import { IUpdateStoreByIdApplication } from 'src/core/Store/application/interfaces/updateStoreById.interface';
-import { AddOrUpdateStoreDto } from 'src/core/Store/domain/dtos/addOrUpdateStoreDto';
+import { ICreateStoreApplication } from '../../../../core/Store/application/interfaces/createStore.interface';
+import { IDeleteStoreByIdApplication } from '../../../../core/Store/application/interfaces/deleteStoreById.interface';
+import { IGetAllStoresApplication } from '../../../../core/Store/application/interfaces/getAllStores.interface';
+import { IGetStoreByIdApplication } from '../../../../core/Store/application/interfaces/getStoreById.interface';
+import { IUpdateStoreByIdApplication } from '../../../../core/Store/application/interfaces/updateStoreById.interface';
+import { AddOrUpdateStoreDto } from '../../../../core/Store/domain/dtos/addOrUpdateStoreDto';
 @ApiTags('Store')
 @Controller('store')
 export class StoreController {
