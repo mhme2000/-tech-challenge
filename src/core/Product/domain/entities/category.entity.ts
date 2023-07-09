@@ -1,18 +1,18 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Product } from './product.entity';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @PrimaryColumn({ name: 'store_id' })
+  storeId: string;
+
   @Column({
     name: 'description',
   })
   description: string;
 
-  @OneToMany(() => Product, (product) => product.category)
-  products: Product[];
-
-  // TODO Criar script para popular tabela de categoria
+  @Column({ name: 'product_id' })
+  productId: string;
 }

@@ -15,16 +15,14 @@ export class Promotion {
   @Column({
     name: 'start_date',
     type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
     nullable: false,
   })
   startDate: Date;
 
   @Column({
-    name: 'start_date',
+    name: 'end_date',
     type: 'timestamp',
-    default: () => null,
-    nullable: true,
+    nullable: false,
   })
   endDate: Date;
 
@@ -35,7 +33,7 @@ export class Promotion {
   })
   discountType: DiscountTypeEnum;
 
-  @Column({ name: 'total_price', type: 'decimal', nullable: false })
+  @Column({ name: 'discount_value', type: 'decimal', nullable: false })
   discountValue: number;
 
   @Column({

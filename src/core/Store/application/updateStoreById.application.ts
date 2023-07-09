@@ -19,6 +19,7 @@ export class UpdateStoreByIdApplication implements IUpdateStoreByIdApplication {
       id: storeDto.storeId,
       name: storeDto.name,
       description: storeDto.description,
+      creationDate: storeOld.creationDate,
     };
     return await this.storeRepository.addOrUpdate(store);
   }

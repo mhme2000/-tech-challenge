@@ -4,7 +4,6 @@ import { IProductRepository } from '../domain/repositories/interfaces/productRep
 import { Product } from '../domain/entities/product.entity';
 import { ICreateProductApplication } from './interfaces/createProduct.interface';
 import { AddOrUpdateProductDto } from '../domain/dtos/addOrUpdateProductDto';
-import { Category } from '../domain/entities/category.entity';
 
 @Injectable()
 export class CreateProductApplication implements ICreateProductApplication {
@@ -14,12 +13,12 @@ export class CreateProductApplication implements ICreateProductApplication {
   ) {}
   async createProduct(productDto: AddOrUpdateProductDto): Promise<Product> {
     const product: Product = {
+      id: null,
       name: productDto.name,
       description: productDto.description,
+      creationDate: new Date(),
+      categoryId: productDto.categoryId,
     };
-    product.category = Object.assign(new Category(), {
-      id: productDto.categoryId,
-    });
     return await this.productRepository.addOrUpdate(product);
   }
 }

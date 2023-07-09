@@ -25,6 +25,7 @@ export class UpdateCustomerByIdApplication
       id: customerDto.customerId,
       name: customerDto.name,
       document: customerDto.document,
+      creationDate: customerOld.creationDate,
     };
     return await this.customerRepository.addOrUpdate(customer);
   }

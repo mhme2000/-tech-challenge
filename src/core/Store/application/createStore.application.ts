@@ -13,8 +13,10 @@ export class CreateStoreApplication implements ICreateStoreApplication {
   ) {}
   async createStore(storeDto: AddOrUpdateStoreDto): Promise<Store> {
     const store: Store = {
+      id: null,
       name: storeDto.name,
       description: storeDto.description,
+      creationDate: new Date(),
     };
     return await this.storeRepository.addOrUpdate(store);
   }

@@ -13,8 +13,10 @@ export class CreateCustomerApplication implements ICreateCustomerApplication {
   ) {}
   async createCustomer(customerDto: AddOrUpdateCustomerDto): Promise<Customer> {
     const customer: Customer = {
+      id: null,
       name: customerDto.name,
       document: customerDto.document,
+      creationDate: null,
     };
     return await this.customerRepository.addOrUpdate(customer);
   }

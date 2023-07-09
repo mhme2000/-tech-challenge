@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   OneToMany,
@@ -22,11 +23,7 @@ export class Order {
   @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId)
   orderItems: OrderItem[];
 
-  @Column({
-    name: 'status',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
+  @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
 
   @Column({

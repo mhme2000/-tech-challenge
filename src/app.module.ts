@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { PSQLORMConfig } from './config/psql.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderModule } from './modules';
 import { ProductModule } from './modules/product.module';
@@ -9,6 +8,7 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './adapter/driver/api/controllers/health.controller';
 import { HttpModule } from '@nestjs/axios';
+import { dataSourceOptions } from './db/datasource';
 
 @Module({
   controllers: [HealthController],
@@ -16,7 +16,7 @@ import { HttpModule } from '@nestjs/axios';
     TerminusModule,
     HttpModule,
     PrometheusModule.register(),
-    TypeOrmModule.forRoot(PSQLORMConfig),
+    TypeOrmModule.forRoot(dataSourceOptions),
     OrderModule,
     ProductModule,
     StoreModule,

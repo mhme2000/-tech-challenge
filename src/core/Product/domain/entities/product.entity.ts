@@ -1,19 +1,19 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Category } from './category.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ApiHideProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   @ApiHideProperty()
-  id?: string;
+  id: string;
 
-  @Column({
-    name: 'creation_date',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
-  creationDate?: Date;
+  @CreateDateColumn({ name: 'creation_date' })
+  creationDate: Date;
 
   @Column({
     name: 'name',
@@ -25,7 +25,6 @@ export class Product {
   })
   description: string;
 
-  @ManyToOne(() => Category, (category) => category.products)
-  category?: Category;
-  //TODO Adicionar colunas restantes
+  @Column({ name: 'category_id' })
+  categoryId: string;
 }

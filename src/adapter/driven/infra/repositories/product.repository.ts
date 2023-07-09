@@ -10,33 +10,15 @@ export class ProductRepository implements IProductRepository {
     @InjectRepository(Product) private repository: Repository<Product>,
   ) {}
   async getById(productId: string): Promise<Product> {
-    return await this.repository.findOne({
-      relations: {
-        category: true,
-      },
-      where: {
-        id: productId,
-      },
+    return await this.repository.findOneBy({
+      id: productId,
     });
   }
   async getByCategoryId(categoryId: string): Promise<Product[]> {
-    return await this.repository.find({
-      relations: {
-        category: true,
-      },
-      where: {
-        category: {
-          id: categoryId,
-        },
-      },
-    });
+    return await this.repository.findBy({ id: categoryId });
   }
   async get(): Promise<Product[]> {
-    return await this.repository.find({
-      relations: {
-        category: true,
-      },
-    });
+    return await this.repository.find();
   }
   async hardDelete(product: Product): Promise<void> {
     await this.repository.remove(product);

@@ -4,7 +4,6 @@ import { IProductRepository } from '../domain/repositories/interfaces/productRep
 import { IUpdateProductByIdApplication } from './interfaces/updateProductById.interface';
 import { Product } from '../domain/entities/product.entity';
 import { AddOrUpdateProductDto } from '../domain/dtos/addOrUpdateProductDto';
-import { Category } from '../domain/entities/category.entity';
 
 @Injectable()
 export class UpdateProductByIdApplication
@@ -24,10 +23,9 @@ export class UpdateProductByIdApplication
       id: productDto.productId,
       name: productDto.name,
       description: productDto.description,
+      categoryId: productDto.categoryId,
+      creationDate: productOld.creationDate,
     };
-    product.category = Object.assign(new Category(), {
-      id: productDto.categoryId,
-    });
     return await this.productRepository.addOrUpdate(product);
   }
 }
