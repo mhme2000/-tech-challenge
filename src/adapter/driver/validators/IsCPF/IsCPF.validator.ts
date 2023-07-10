@@ -1,13 +1,12 @@
 import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
-  ValidationArguments,
 } from 'class-validator';
 
 // TODO VERIFICAR VALIDAÇÃO CPF
 @ValidatorConstraint({ name: 'customText', async: false })
 export class IsCPF implements ValidatorConstraintInterface {
-  validate(text: string, args: ValidationArguments) {
+  validate(text: string) {
     if (typeof text !== 'string') return false;
     const cpf = text.replace(/[^\d]+/g, '');
     if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
@@ -27,7 +26,7 @@ export class IsCPF implements ValidatorConstraintInterface {
     return !(rest(10, 2) !== validator[0] || rest(11, 1) !== validator[1]);
   }
 
-  defaultMessage(args: ValidationArguments) {
+  defaultMessage() {
     return '($value) is not a valid CPF document';
   }
 }

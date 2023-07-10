@@ -6,7 +6,6 @@ import {
   ParseUUIDPipe,
   Res,
   HttpStatus,
-  Patch,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IGetOrderByIdApplication } from '../../../../core/Order/application/interfaces/getOrderById.interface';
