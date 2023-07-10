@@ -3,7 +3,6 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator';
 
-// TODO VERIFICAR VALIDAÇÃO CPF
 @ValidatorConstraint({ name: 'customText', async: false })
 export class IsCPF implements ValidatorConstraintInterface {
   validate(text: string) {
