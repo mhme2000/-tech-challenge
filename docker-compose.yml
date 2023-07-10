@@ -56,7 +56,6 @@ services:
       - prometheus        
     volumes:
       - ./grafana/data:/var/lib/grafana
-    user: 'root:root'
     networks:
       - nest-js-network
 

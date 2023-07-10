@@ -115,7 +115,7 @@ export class ProductController {
     }
   }
 
-  @Put('/:id')
+  // @Put('/:id')
   public async Update(
     @Res() res,
     @Param('id', new ParseUUIDPipe({ version: '4' })) productId: string,
@@ -138,7 +138,7 @@ export class ProductController {
     }
   }
 
-  @Post()
+  // @Post()
   public async Create(@Res() res, @Body() productDto: AddOrUpdateProductDto) {
     try {
       const product = await this.createProductApp.createProduct(productDto);

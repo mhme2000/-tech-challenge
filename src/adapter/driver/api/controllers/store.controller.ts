@@ -69,7 +69,7 @@ export class StoreController {
     }
   }
 
-  @Delete('/:id')
+  // @Delete('/:id')
   public async Delete(
     @Res() res,
     @Param('id', new ParseUUIDPipe({ version: '4' })) storeId: string,
@@ -88,7 +88,7 @@ export class StoreController {
     }
   }
 
-  @Put('/:id')
+  // @Put('/:id')
   public async Update(
     @Res() res,
     @Param('id', new ParseUUIDPipe({ version: '4' })) storeId: string,
@@ -109,7 +109,7 @@ export class StoreController {
     }
   }
 
-  @Post()
+  // @Post()
   public async Create(@Res() res, @Body() storeDto: AddOrUpdateStoreDto) {
     try {
       const store = await this.createStoreApp.createStore(storeDto);

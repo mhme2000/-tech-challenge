@@ -6,10 +6,6 @@ Projeto desenvolvido para pós graduação POSTECH - Software Architeture.
 
 É necessário ter instalado na máquina [Docker](https://docs.docker.com/engine/install/) e [Docker Compose](https://docs.docker.com/compose/install/).
 
-Para dar permissão na pasta do grafana deve se rodar
-
-``` sudo chmod 777 grafana/data ```
-
 ## Modelo Entidade Relacionamento
 
 <img src="tech_challenge_mer.png" alt="drawing" width="75%"/>
@@ -24,7 +20,17 @@ docker compose up
 
 ## Acessando o projeto
 
-Acesso a API
+### Acesso a API
 
 ``` http://localhost:3000/api#/```
 
+### Acesso ao prometheus
+
+```http://localhost:9090```
+
+### Acesso ao grafana
+
+user: admin
+senha: admin
+
+```http://localhost:3001/d/PTSqcpJWk/nestjs-application-dashboard?orgId=1```
