@@ -11,7 +11,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, config));
-  
+
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);
 }
