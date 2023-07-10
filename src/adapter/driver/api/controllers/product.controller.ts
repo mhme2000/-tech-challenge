@@ -72,7 +72,7 @@ export class ProductController {
     }
   }
 
-  @Get('filterByCategoryId/:categoryId')
+  @Get('category/:categoryId')
   public async GetByCategoryId(
     @Res() res,
     @Param('categoryId', new ParseUUIDPipe({ version: '4' }))
@@ -81,8 +81,10 @@ export class ProductController {
     try {
       const products =
         await this.getProductByCategoryIdApp.getProductByCategoryId(categoryId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
+        
+      const statusCode = products.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
         data: products,
       });
     } catch (err) {

@@ -4,7 +4,6 @@ import { Order } from '../../../../core/Order/domain/entities/order.entity';
 import { IOrderRepository } from '../../../../core/Order/domain/repositories/interfaces/orderRepository.interface';
 import { Repository } from 'typeorm';
 import { OrderStatusEnum } from 'src/core/Order/domain/enums/orderStatus.enum';
-import { OrderStatus } from 'src/core/Order/domain/entities/orderStatus.entity';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {

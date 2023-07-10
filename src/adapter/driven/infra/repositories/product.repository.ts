@@ -20,17 +20,12 @@ export class ProductRepository implements IProductRepository {
     });
   }
   async getByCategoryId(categoryId: string): Promise<Product[]> {
-    return await this.repository.find({
-      relations: {
-        category: true,
-      },
-      where: {
-        category: {
-          id: categoryId,
-        },
-      },
-    });
+    return await this.repository
+      .createQueryBuilder('product')
+      .where('product.categoryId = :categoryId', { categoryId })
+      .getMany();
   }
+
   async get(): Promise<Product[]> {
     return await this.repository.find({
       relations: {

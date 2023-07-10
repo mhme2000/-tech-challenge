@@ -31,6 +31,6 @@ export class Product {
   })
   description: string;
 
-  @ManyToOne(() => Category, (category: Category) => category.products)
+  @ManyToOne(() => Category, (category: Category) => category.id)
   category: Category;
 }
