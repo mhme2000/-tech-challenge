@@ -47,8 +47,7 @@ export class CustomerController {
     }
   }
 
-  @Get()
-  @Patch('/document/{document}')
+  @Get('/document/:document')
   public async GetByDocument(@Res() res, @Param('document') document: string) {
     try {
       const customer =
