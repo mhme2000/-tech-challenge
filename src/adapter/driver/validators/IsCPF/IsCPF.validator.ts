@@ -8,43 +8,22 @@ import {
 @ValidatorConstraint({ name: 'customText', async: false })
 export class IsCPF implements ValidatorConstraintInterface {
   validate(text: string, args: ValidationArguments) {
-    if (text == '00000000000') return false;
-
-    let sum = 0;
-    let rest = 0;
-
-    // Validation First Verification Digit
-    const firstVerificationDigit = parseInt(text.charAt(10));
-
-    for (let i = 0; i < 9; i++) {
-      sum += parseInt(text.charAt(i)) * (10 - i);
-    }
-
-    rest = (sum * 10) % 11;
-
-    if (rest == 10 || rest == 11) rest = 0;
-
-    if (rest != firstVerificationDigit) return false;
-
-    // Validation Second Verification Digit
-    const secondVerificationDigit = parseInt(text.charAt(10));
-
-    sum = 0;
-
-    for (let i = 0; i < 10; i++) {
-      sum += parseInt(text.charAt(i)) * (11 - i);
-    }
-
-    rest = (sum * 10) % 11;
-
-    if (rest == 10 || rest == 11) rest = 0;
-
-    if (rest != secondVerificationDigit) return false;
-
-    return true;
+    if (typeof text !== 'string') return false
+    let cpf = text.replace(/[^\d]+/g, '')
+    if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false
+    let cpfSplited = cpf.split('')
+    const validator = cpfSplited
+        .filter((digit, index, array) => index >= array.length - 2 && digit)
+        .map( el => +el )
+    const toValidate = pop => cpfSplited
+        .filter((digit, index, array) => index < array.length - pop && digit)
+        .map(el => +el)
+    const rest = (count, pop) => (toValidate(pop)
+        .reduce((soma, el, i) => soma + el * (count - i), 0) * 10) % 11 % 10
+    return !(rest(10,2) !== validator[0] || rest(11,1) !== validator[1])
   }
 
   defaultMessage(args: ValidationArguments) {
-    return '($value) is not a valid CPF document!';
+    return '($value) is not a valid CPF document';
   }
 }
