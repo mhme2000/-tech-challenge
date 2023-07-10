@@ -81,8 +81,9 @@ export class ProductController {
     try {
       const products =
         await this.getProductByCategoryIdApp.getProductByCategoryId(categoryId);
-        
-      const statusCode = products.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+
+      const statusCode =
+        products.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
       return res.status(statusCode).json({
         statusCode: statusCode,
         data: products,

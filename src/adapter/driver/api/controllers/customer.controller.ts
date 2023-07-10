@@ -15,7 +15,6 @@ import { CUSTOMER_TYPES } from 'src/core/Customer/types';
 import { CustomerDTO } from '../../dtos/CustomerDTO.dto';
 import { CustomerMapper } from '../../mappers/customerMapper.mapper';
 import { IGetCustomerByDocumentApplication } from 'src/core/Customer/application/interfaces/getCustomerByDocument.interface';
-import { OrderStatusEnum } from 'src/core/Order/domain/enums/orderStatus.enum';
 
 @ApiTags('Customer')
 @Controller('customer')
