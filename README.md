@@ -15,6 +15,7 @@ Projeto desenvolvido para pós graduação POSTECH - Software Architeture.
 Para executar o projeto basta rodar o comando:
 
 ```
+docker compose build
 docker compose up
 ```
 
