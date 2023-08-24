@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-fiap-deployment
+  labels:
+    app: api-fiap-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-fiap-pod
+  template:
+    metadata:
+      name: api-fiap
+      labels:
+        app: api-fiap-pod
+    spec:
+      containers:
+        - name: api-fiap-challenge-container
+          image: gustavoclemente/api-tech-challenge-fiap:1.0.0
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: api-secrets
