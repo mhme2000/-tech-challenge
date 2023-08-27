@@ -14,6 +14,13 @@ spec:
           image: prom/prometheus:latest
           ports:
             - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-volume
+              mountPath: /etc/prometheus
+      volumes:
+        - name: prometheus-volume
+          configMap:
+            name: prometheus-configmap
   selector:
     matchLabels:
       app: prometheus-pod
