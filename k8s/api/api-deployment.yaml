@@ -11,7 +11,7 @@ spec:
       app: api-fiap-pod
   template:
     metadata:
-      name: api-fiap
+      name: api-fiap-pod
       labels:
         app: api-fiap-pod
     spec:
@@ -19,7 +19,20 @@ spec:
         - name: api-fiap-challenge-container
           image: gustavoclemente/api-tech-challenge-fiap:1.0.0
           ports:
-            - containerPort: 3000
+            - name: api-port
+              containerPort: 3000
           envFrom:
             - secretRef:
                 name: api-secrets
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 500m
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: api-port
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
