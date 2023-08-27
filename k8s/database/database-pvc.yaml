@@ -3,12 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: database-pvc
 spec:
+  storageClassName: local-storage
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
   resources:
     requests:
       storage: 1Gi
-  selector:
-    matchLabels:
-      app: local-pv

@@ -13,13 +13,26 @@ spec:
         - name: database-container
           image: postgres
           ports:
-            - containerPort: 5432
+            - name: database-port
+              containerPort: 5432
           envFrom:
             - secretRef:
                 name: database-secret
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: database-pvc
+          livenessProbe:
+            tcpSocket:
+              port: database-port
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: database-port
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
       volumes:
         - name: database-pvc
           persistentVolumeClaim:
