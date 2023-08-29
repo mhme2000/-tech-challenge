@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: api-tech-challenge
+  name: api-infra-rolebinding
+subjects:
+  - kind: User
+    name: api-infra
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: api-infra-role
+  apiGroup: rbac.authorization.k8s.io
