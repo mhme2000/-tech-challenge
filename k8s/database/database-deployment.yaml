@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: database-deployment
+  namespace: database-tech-challenge
 spec:
   template:
     metadata:
