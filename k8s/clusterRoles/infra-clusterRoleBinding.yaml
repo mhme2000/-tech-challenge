@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: infra-cluster-rolebinding
+subjects:
+  - kind: User
+    name: infra-user
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: infra
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+ name: infra
+rules:
+  - apiGroups: [""]
+    resources: ["horizontalpodautoscalers", "persistentsVolumes", "persistentsVolumesClains", "StorageClass"]
+    verbs: ["list", "create", "watch", "patch", "delete", "exec", "get"]
