@@ -5,6 +5,6 @@ metadata:
   name: monitoring-role
 rules:
   - apiGroups: ["*"]
-    resources: ["pods", "deployments", "services", "secrets", "configMap", "persistentsVolumesClains"]
+    resources: ["pods", "deployments", "services", "secrets", "configMap", "persistentvolumeclaims"]
     verbs: ["list", "create", "watch", "patch", "delete", "exec", "get"]
 
