@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-fiap-deployment
+  namespace: api-tech-challenge
   labels:
     app: api-fiap-deployment
 spec:
@@ -35,4 +36,3 @@ spec:
               port: api-port
             initialDelaySeconds: 30
             periodSeconds: 10
-            failureThreshold: 3
