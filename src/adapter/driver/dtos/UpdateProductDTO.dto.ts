@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AddOrUpdateProductDto {
+export class UpdateProductDTO {
   @ApiProperty({
     type: String,
   })
@@ -8,13 +8,25 @@ export class AddOrUpdateProductDto {
   @ApiProperty({
     type: String,
   })
-  description: string;
-  @ApiProperty({
-    type: String,
-  })
   categoryId: string;
   @ApiProperty({
     type: String,
   })
-  productId?: string;
+  storeId: string;
+  @ApiProperty({
+    type: Number,
+  })
+  price: number;
+  @ApiProperty({
+    type: String,
+  })
+  description: string;
+  @ApiProperty({
+    type: String,
+  })
+  image: string;
+  @ApiProperty({
+    type: String,
+  })
+  productId: string;
 }

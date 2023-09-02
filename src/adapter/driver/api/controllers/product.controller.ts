@@ -18,7 +18,8 @@ import { IGetAllProductsApplication } from '../../../../core/Product/application
 import { IGetProductByCategoryIdApplication } from '../../../../core/Product/application/interfaces/getProductByCategoryId.interface';
 import { IGetProductByIdApplication } from '../../../../core/Product/application/interfaces/getProductById.interface';
 import { IUpdateProductByIdApplication } from '../../../../core/Product/application/interfaces/updateProductById.interface';
-import { AddOrUpdateProductDto } from '../../../../core/Product/domain/dtos/addOrUpdateProductDto';
+import {CreateProductDTO} from '../../dtos/CreateProductDTO.dto';
+import {UpdateProductDTO} from '../../dtos/UpdateProductDTO.dto';
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {
@@ -115,11 +116,11 @@ export class ProductController {
     }
   }
 
-  // @Put('/:id')
+  @Put('/:id')
   public async Update(
     @Res() res,
     @Param('id', new ParseUUIDPipe({ version: '4' })) productId: string,
-    @Body() productDto: AddOrUpdateProductDto,
+    @Body() productDto: UpdateProductDTO,
   ) {
     try {
       productDto.productId = productId;
@@ -138,8 +139,8 @@ export class ProductController {
     }
   }
 
-  // @Post()
-  public async Create(@Res() res, @Body() productDto: AddOrUpdateProductDto) {
+  @Post()
+  public async Create(@Res() res, @Body() productDto: CreateProductDTO) {
     try {
       const product = await this.createProductApp.createProduct(productDto);
       return res.status(HttpStatus.CREATED).json({
