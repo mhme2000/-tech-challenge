@@ -42,8 +42,9 @@ export class ProductController {
   ) {
     try {
       const product = await this.getProductByIdApp.getProductById(productId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
+      const statusCode = product  ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
         data: product,
       });
     } catch (err) {
@@ -79,11 +80,8 @@ export class ProductController {
     try {
       const products =
         await this.getProductByCategoryIdApp.getProductByCategoryId(categoryId);
-
-      const statusCode =
-        products.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-      return res.status(statusCode).json({
-        statusCode: statusCode,
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
         data: products,
       });
     } catch (err) {

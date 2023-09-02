@@ -9,10 +9,10 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IGetOrderByIdApplication } from '../../../../core/Order/application/interfaces/getOrderById.interface';
-import { ORDER_TYPES } from 'src/core/Order/types';
-import { IGetOrdersByStoreIdAndStatus } from 'src/core/Order/application/interfaces/getOrdersByStoreIdAndStatus.interface';
-import { IGetOrdersByStoreId } from 'src/core/Order/application/interfaces/getOrdersByStoreId.interface';
-import { OrderStatusEnum } from 'src/core/Order/domain/enums/orderStatus.enum';
+import { ORDER_TYPES } from '../../../../core/Order/types';
+import { IGetOrdersByStoreIdAndStatus } from '../../../../core/Order/application/interfaces/getOrdersByStoreIdAndStatus.interface';
+import { IGetOrdersByStoreId } from '../../../../core/Order/application/interfaces/getOrdersByStoreId.interface';
+import { OrderStatusEnum } from '../../../../core/Order/domain/enums/orderStatus.enum';
 
 @ApiTags('Order')
 @Controller('order')

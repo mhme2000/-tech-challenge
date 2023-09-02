@@ -33,11 +33,8 @@ export class Order {
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
 
-  @Column({
-    name: 'prevision_delivery_date',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
+
+  @CreateDateColumn({ name:'prevision_delivery_date' })
   previsionDeliveryDate: Date;
 
   @Column({

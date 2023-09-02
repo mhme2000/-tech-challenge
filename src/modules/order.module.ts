@@ -5,8 +5,8 @@ import { OrderController } from '../adapter/driver/api/controllers/order.control
 import { GetOrderByIdApplication } from '../core/Order/application/getOrderById.application';
 import { Order } from '../core/Order/domain/entities/order.entity';
 import { ORDER_TYPES } from '../core/Order/types';
-import { GetOrdersByStoreId } from 'src/core/Order/application/getOrdersByStoreId.application';
-import { GetOrdersByStoreIdAndStatus } from 'src/core/Order/application/getOrdersByStoreIdAndStatus.application';
+import { GetOrdersByStoreId } from '../core/Order/application/getOrdersByStoreId.application';
+import { GetOrdersByStoreIdAndStatus } from '../core/Order/application/getOrdersByStoreIdAndStatus.application';
 
 // Order
 const getOrderByIdApp = {
