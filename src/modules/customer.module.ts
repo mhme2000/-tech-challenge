@@ -5,7 +5,7 @@ import { CustomerController } from '../adapter/driver/api/controllers/customer.c
 import { CreateCustomerApplication } from '../core/Customer/application/createCustomer.application';
 import { Customer } from '../core/Customer/domain/entities/customer.entity';
 import { CUSTOMER_TYPES } from '../core/Customer/types';
-import { GetCustomerByDocumentApplication } from 'src/core/Customer/application/getCustomerByDocument.application';
+import { GetCustomerByDocumentApplication } from '../core/Customer/application/getCustomerByDocument.application';
 // Customer
 const createCustomerApp = {
   provide: CUSTOMER_TYPES.applications.ICreateCustomerApplication,

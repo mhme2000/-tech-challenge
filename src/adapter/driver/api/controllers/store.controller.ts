@@ -6,9 +6,6 @@ import {
   ParseUUIDPipe,
   Res,
   HttpStatus,
-  Delete,
-  Put,
-  Post,
   Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -41,8 +38,9 @@ export class StoreController {
   ) {
     try {
       const store = await this.getStoreByIdApp.getStoreById(storeId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
+      const statusCode = store ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
         data: store,
       });
     } catch (err) {

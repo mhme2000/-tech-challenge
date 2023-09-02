@@ -7,8 +7,6 @@ import {
   Res,
   HttpStatus,
   Delete,
-  Put,
-  Post,
   Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';

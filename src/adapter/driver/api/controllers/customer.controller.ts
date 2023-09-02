@@ -7,14 +7,13 @@ import {
   HttpStatus,
   Post,
   Body,
-  Patch,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ICreateCustomerApplication } from '../../../../core/Customer/application/interfaces/createCustomer.interface';
-import { CUSTOMER_TYPES } from 'src/core/Customer/types';
+import { CUSTOMER_TYPES } from '../../../../core/Customer/types';
 import { CustomerDTO } from '../../dtos/CustomerDTO.dto';
 import { CustomerMapper } from '../../mappers/customerMapper.mapper';
-import { IGetCustomerByDocumentApplication } from 'src/core/Customer/application/interfaces/getCustomerByDocument.interface';
+import { IGetCustomerByDocumentApplication } from '../../../../core/Customer/application/interfaces/getCustomerByDocument.interface';
 
 @ApiTags('Customer')
 @Controller('customer')
@@ -52,8 +51,9 @@ export class CustomerController {
     try {
       const customer =
         await this.getCustomerByDocumentApplication.getByDocument(document);
-      return res.status(HttpStatus.CREATED).json({
-        statusCode: HttpStatus.CREATED,
+      const statusCode = customer ? HttpStatus.CREATED : HttpStatus.NOT_FOUND;
+      return res.status(statusCode).json({
+        statusCode: statusCode,
         data: customer,
       });
     } catch (err) {
