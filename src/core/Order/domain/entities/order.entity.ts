@@ -33,8 +33,7 @@ export class Order {
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
 
-
-  @CreateDateColumn({ name:'prevision_delivery_date' })
+  @CreateDateColumn({ name: 'prevision_delivery_date' })
   previsionDeliveryDate: Date;
 
   @Column({
