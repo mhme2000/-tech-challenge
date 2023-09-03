@@ -8,6 +8,11 @@ import { ORDER_TYPES } from '../core/Order/types';
 import { GetOrdersByStoreId } from '../core/Order/application/getOrdersByStoreId.application';
 import { GetOrdersByStoreIdAndStatus } from '../core/Order/application/getOrdersByStoreIdAndStatus.application';
 import { PutStatusById } from 'src/core/Order/application/putStatusByStoreId.application';
+import { GetOrderByExternalPaymentIdApplication } from 'src/core/Order/application/getOrderByExternalPaymentId.application';
+import {  UpdateOrderPaymentStatus } from 'src/core/Order/application/updateOrderPaymentStatus.application';
+import { UpdateOrderStatus } from 'src/core/Order/application/updateOrderStatus.application';
+import { OrderItem } from 'src/core/Order/domain/entities/orderItem.entity';
+import { OrderStatus } from 'src/core/Order/domain/entities/orderStatus.entity';
 
 // Order
 const getOrderByIdApp = {
@@ -35,6 +40,21 @@ const putStatusByOrderId  = {
   useClass: PutStatusById,
 };
 
+const getOrderByExternalPaymentId  = {
+  provide: ORDER_TYPES.applications.IGetOrderByExternalPaymentId,
+  useClass: GetOrderByExternalPaymentIdApplication,
+}
+
+const updateOrderPaymentStatus  = {
+  provide: ORDER_TYPES.applications.IUpdateOrderPaymentStatus,
+  useClass: UpdateOrderPaymentStatus,
+}
+
+const updateOrderStatus  = {
+  provide: ORDER_TYPES.applications.IUpdateOrderStatus,
+  useClass: UpdateOrderStatus,
+}
+
 const orderRepository = {
   provide: ORDER_TYPES.repositories.IOrderRepository,
   useClass: OrderRepository,
@@ -42,7 +62,7 @@ const orderRepository = {
 
 @Module({
   controllers: [OrderController],
-  imports: [TypeOrmModule.forFeature([Order])],
+  imports: [TypeOrmModule.forFeature([Order, OrderItem, OrderStatus])],
   providers: [
     orderRepository,
     postOrder,
@@ -50,6 +70,9 @@ const orderRepository = {
     getOrderByIdApp,
     getOrdersByStoreId,
     getOrdersByStoreIdAndStatus,
+    updateOrderPaymentStatus,
+    updateOrderStatus,
+    getOrderByExternalPaymentId
   ],
 })
 export class OrderModule {}

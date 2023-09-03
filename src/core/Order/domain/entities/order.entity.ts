@@ -12,6 +12,7 @@ import {
 import { OrderStatus } from './orderStatus.entity';
 import { OrderItem } from './orderItem.entity';
 import { OrderPaymentStatus } from './orderPaymentStatus.entity';
+import { OrderPaymentStatusEnum } from '../enums/paymentStatus.enum';
 
 @Entity()
 export class Order {
@@ -35,6 +36,16 @@ export class Order {
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
 
+  @PrimaryColumn({ name: 'external_payment_id' })
+  externalPaymentId: string;
+
+  @Column({
+    type: 'text',
+    enum: OrderPaymentStatusEnum,
+    default: OrderPaymentStatusEnum.PENDING,
+  })
+  paymentStatus: OrderPaymentStatusEnum;
+  
   @CreateDateColumn({ name: 'prevision_delivery_date' })
   previsionDeliveryDate: Date;
 

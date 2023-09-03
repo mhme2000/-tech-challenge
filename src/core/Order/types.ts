@@ -1,3 +1,4 @@
+
 export const ORDER_TYPES = {
   applications: {
     IGetOrderByIdApplication: 'IGetOrderByIdApplication',
@@ -5,6 +6,9 @@ export const ORDER_TYPES = {
     IGetOrdersByStoreIdAndStatus: 'IGetOrdersByStoreIdAndStatus',
     IPutStatusById: 'IPutStatusById',
     IPostOrder: 'IPostOrder',
+    IGetOrderByExternalPaymentId: 'IGetOrderByExternalPaymentId',
+    IUpdateOrderPaymentStatus: 'IUpdateOrderPaymentStatus',
+    IUpdateOrderStatus: 'IUpdateOrderStatus',
   },
   repositories: {
     IOrderRepository: 'IOrderRepository',

@@ -12,7 +12,7 @@ import { IGetOrderByIdApplication } from '../../../../core/Order/application/int
 import { ORDER_TYPES } from '../../../../core/Order/types';
 import { IGetOrdersByStoreId } from '../../../../core/Order/application/interfaces/getOrdersByStoreId.interface';
 import { OrderStatusEnum } from '../../../../core/Order/domain/enums/orderStatus.enum';
-import { IPutStatusById } from 'src/core/Order/application/interfaces/putStatusById.interface';
+import { IUpdateOrderStatus } from 'src/core/Order/application/interfaces/updateOrderStatus.interface';
 import { OrderDTO } from '../../dtos/OrderDTO.dto';
 import { IGetOrdersByStoreIdAndStatus } from 'src/core/Order/application/interfaces/getOrdersByStoreIdAndStatus.interface';
 import { IPostOrder } from 'src/core/Order/application/interfaces/postOrder.interface';
@@ -30,8 +30,8 @@ export class OrderController {
     @Inject(ORDER_TYPES.applications.IGetOrdersByStoreIdAndStatus)
     private getOrderByStoreIdAndStatus: IGetOrdersByStoreIdAndStatus,
 
-    @Inject(ORDER_TYPES.applications.IPutStatusById)
-    private putOrderStatusById: IPutStatusById,
+    @Inject(ORDER_TYPES.applications.IUpdateOrderStatus)
+    private putOrderStatusById: IUpdateOrderStatus,
 
     @Inject(ORDER_TYPES.applications.IPostOrder)
     private postOrder: IPostOrder,
@@ -111,7 +111,7 @@ export class OrderController {
     @Param('status') status: OrderStatusEnum,
   ) {
     try {
-      await this.putOrderStatusById.putStatusByOrderId(orderId, status);
+      await this.putOrderStatusById.updateOrderStatus(orderId, status);
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK
       });

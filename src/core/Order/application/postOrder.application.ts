@@ -6,6 +6,7 @@ import { OrderDTO } from 'src/adapter/driver/dtos/OrderDTO.dto';
 import { Order } from '../domain/entities/order.entity';
 import { OrderStatusEnum } from '../domain/enums/orderStatus.enum';
 import { OrderItem } from '../domain/entities/orderItem.entity';
+import { OrderPaymentStatusEnum } from '../domain/enums/paymentStatus.enum';
 
 
 @Injectable()
@@ -28,6 +29,8 @@ export class PostOrder
       totalPrice: 0,
       storeId: orderDto.storeId,
       statusId: await this.orderRepository.getStatusByDescription(OrderStatusEnum.PENDING_PAYMENT),
+      paymentStatus: OrderPaymentStatusEnum.PENDING,
+      externalPaymentId: null
     }
     const orderId = await this.orderRepository.createOrUpdateOrder(order);
     order.id = orderId;
