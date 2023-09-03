@@ -12,10 +12,7 @@ export interface IOrderRepository {
     storeId: string,
     status: OrderStatusEnum,
   ): Promise<Order[]>;
-  updateOrderStatus(
-    orderId: string,
-    status: OrderStatusEnum,
-  ): Promise<void>;
+  updateOrderStatus(orderId: string, status: OrderStatusEnum): Promise<void>;
   updateOrderPaymentStatus(
     orderId: string,
     status: OrderPaymentStatusEnum,

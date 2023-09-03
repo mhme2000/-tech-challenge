@@ -9,7 +9,7 @@ import { GetOrdersByStoreId } from '../core/Order/application/getOrdersByStoreId
 import { GetOrdersByStoreIdAndStatus } from '../core/Order/application/getOrdersByStoreIdAndStatus.application';
 import { PutStatusById } from 'src/core/Order/application/putStatusByStoreId.application';
 import { GetOrderByExternalPaymentIdApplication } from 'src/core/Order/application/getOrderByExternalPaymentId.application';
-import {  UpdateOrderPaymentStatus } from 'src/core/Order/application/updateOrderPaymentStatus.application';
+import { UpdateOrderPaymentStatus } from 'src/core/Order/application/updateOrderPaymentStatus.application';
 import { UpdateOrderStatus } from 'src/core/Order/application/updateOrderStatus.application';
 import { OrderItem } from 'src/core/Order/domain/entities/orderItem.entity';
 import { OrderStatus } from 'src/core/Order/domain/entities/orderStatus.entity';
@@ -35,25 +35,25 @@ const postOrder = {
   useClass: GetOrdersByStoreIdAndStatus,
 };
 
-const putStatusByOrderId  = {
+const putStatusByOrderId = {
   provide: ORDER_TYPES.applications.IPutStatusById,
   useClass: PutStatusById,
 };
 
-const getOrderByExternalPaymentId  = {
+const getOrderByExternalPaymentId = {
   provide: ORDER_TYPES.applications.IGetOrderByExternalPaymentId,
   useClass: GetOrderByExternalPaymentIdApplication,
-}
+};
 
-const updateOrderPaymentStatus  = {
+const updateOrderPaymentStatus = {
   provide: ORDER_TYPES.applications.IUpdateOrderPaymentStatus,
   useClass: UpdateOrderPaymentStatus,
-}
+};
 
-const updateOrderStatus  = {
+const updateOrderStatus = {
   provide: ORDER_TYPES.applications.IUpdateOrderStatus,
   useClass: UpdateOrderStatus,
-}
+};
 
 const orderRepository = {
   provide: ORDER_TYPES.repositories.IOrderRepository,
@@ -72,7 +72,7 @@ const orderRepository = {
     getOrdersByStoreIdAndStatus,
     updateOrderPaymentStatus,
     updateOrderStatus,
-    getOrderByExternalPaymentId
+    getOrderByExternalPaymentId,
   ],
 })
 export class OrderModule {}

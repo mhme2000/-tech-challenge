@@ -1,4 +1,4 @@
-import { OrderPaymentStatusEnum } from "../../domain/enums/paymentStatus.enum";
+import { OrderPaymentStatusEnum } from '../../domain/enums/paymentStatus.enum';
 
 export interface IUpdateOrderPaymentStatus {
   updateOrderPaymentStatus(

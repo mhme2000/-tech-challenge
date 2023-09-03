@@ -6,7 +6,6 @@ export class OrderPaymentStatus {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  
   @Column({
     type: 'text',
     enum: OrderPaymentStatusEnum,

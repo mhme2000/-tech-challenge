@@ -45,7 +45,7 @@ export class Order {
     default: OrderPaymentStatusEnum.PENDING,
   })
   paymentStatus: OrderPaymentStatusEnum;
-  
+
   @CreateDateColumn({ name: 'prevision_delivery_date' })
   previsionDeliveryDate: Date;
 

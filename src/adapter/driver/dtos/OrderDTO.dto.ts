@@ -1,13 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  IsString,
-  IsDate,
-  IsNumber,
-} from 'class-validator';
+import { IsNotEmpty, IsString, IsDate, IsNumber } from 'class-validator';
 
-
-class OrderItemDTO{
+class OrderItemDTO {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ type: String })
@@ -45,6 +39,5 @@ export class OrderDTO {
   previsionDeliveryDate: Date;
 
   @ApiProperty({ type: Array<OrderItemDTO> })
-  orderItems : OrderItemDTO[];
+  orderItems: OrderItemDTO[];
 }
-

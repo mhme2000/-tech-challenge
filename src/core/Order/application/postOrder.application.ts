@@ -8,11 +8,8 @@ import { OrderStatusEnum } from '../domain/enums/orderStatus.enum';
 import { OrderItem } from '../domain/entities/orderItem.entity';
 import { OrderPaymentStatusEnum } from '../domain/enums/paymentStatus.enum';
 
-
 @Injectable()
-export class PostOrder
-  implements IPostOrder
-{
+export class PostOrder implements IPostOrder {
   constructor(
     @Inject(ORDER_TYPES.repositories.IOrderRepository)
     private orderRepository: IOrderRepository,
@@ -21,36 +18,36 @@ export class PostOrder
   async postOrder(orderDto: OrderDTO): Promise<string> {
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
-    let order: Order = {
+    const order: Order = {
       id: null,
       creationDate: today,
       customerId: orderDto.customerId,
       previsionDeliveryDate: orderDto.previsionDeliveryDate,
       totalPrice: 0,
       storeId: orderDto.storeId,
-      statusId: await this.orderRepository.getStatusByDescription(OrderStatusEnum.PENDING_PAYMENT),
+      statusId: await this.orderRepository.getStatusByDescription(
+        OrderStatusEnum.PENDING_PAYMENT,
+      ),
       paymentStatus: OrderPaymentStatusEnum.PENDING,
-      externalPaymentId: null
-    }
+      externalPaymentId: null,
+    };
     const orderId = await this.orderRepository.createOrUpdateOrder(order);
     order.id = orderId;
-    var totalPrice = 0;
-    orderDto.orderItems.forEach(async orderItemDto => {
+    let totalPrice = 0;
+    orderDto.orderItems.forEach(async (orderItemDto) => {
       totalPrice = totalPrice + (orderItemDto.price - orderItemDto.discount);
-      let orderItem: OrderItem = {
+      const orderItem: OrderItem = {
         id: null,
         orderId: orderId,
         quantity: orderItemDto.quantity,
         price: orderItemDto.price,
         discount: orderItemDto.discount,
-        productId: orderItemDto.productId
-      }
+        productId: orderItemDto.productId,
+      };
       await this.orderRepository.createOrderItem(orderItem);
     });
     order.totalPrice = totalPrice;
-    await this.orderRepository.createOrUpdateOrder(order)
+    await this.orderRepository.createOrUpdateOrder(order);
     return orderId;
   }
-
- 
 }

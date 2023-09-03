@@ -1,4 +1,3 @@
-
 export const ORDER_TYPES = {
   applications: {
     IGetOrderByIdApplication: 'IGetOrderByIdApplication',

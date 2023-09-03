@@ -5,7 +5,10 @@ import {
   Inject,
   ParseUUIDPipe,
   Res,
-  HttpStatus, Put, Post, Body,
+  HttpStatus,
+  Put,
+  Post,
+  Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IGetOrderByIdApplication } from '../../../../core/Order/application/interfaces/getOrderById.interface';
@@ -35,7 +38,7 @@ export class OrderController {
 
     @Inject(ORDER_TYPES.applications.IPostOrder)
     private postOrder: IPostOrder,
-  ) { }
+  ) {}
 
   @Get('/:id')
   public async Get(
@@ -113,7 +116,7 @@ export class OrderController {
     try {
       await this.putOrderStatusById.updateOrderStatus(orderId, status);
       return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK
+        statusCode: HttpStatus.OK,
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -139,4 +142,3 @@ export class OrderController {
     }
   }
 }
-
