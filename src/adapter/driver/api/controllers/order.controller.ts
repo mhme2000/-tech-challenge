@@ -5,14 +5,17 @@ import {
   Inject,
   ParseUUIDPipe,
   Res,
-  HttpStatus,
+  HttpStatus, Put, Post, Body,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IGetOrderByIdApplication } from '../../../../core/Order/application/interfaces/getOrderById.interface';
 import { ORDER_TYPES } from '../../../../core/Order/types';
-import { IGetOrdersByStoreIdAndStatus } from '../../../../core/Order/application/interfaces/getOrdersByStoreIdAndStatus.interface';
 import { IGetOrdersByStoreId } from '../../../../core/Order/application/interfaces/getOrdersByStoreId.interface';
 import { OrderStatusEnum } from '../../../../core/Order/domain/enums/orderStatus.enum';
+import { IPutStatusById } from 'src/core/Order/application/interfaces/putStatusById.interface';
+import { OrderDTO } from '../../dtos/OrderDTO.dto';
+import { IGetOrdersByStoreIdAndStatus } from 'src/core/Order/application/interfaces/getOrdersByStoreIdAndStatus.interface';
+import { IPostOrder } from 'src/core/Order/application/interfaces/postOrder.interface';
 
 @ApiTags('Order')
 @Controller('order')
@@ -26,7 +29,13 @@ export class OrderController {
 
     @Inject(ORDER_TYPES.applications.IGetOrdersByStoreIdAndStatus)
     private getOrderByStoreIdAndStatus: IGetOrdersByStoreIdAndStatus,
-  ) {}
+
+    @Inject(ORDER_TYPES.applications.IPutStatusById)
+    private putOrderStatusById: IPutStatusById,
+
+    @Inject(ORDER_TYPES.applications.IPostOrder)
+    private postOrder: IPostOrder,
+  ) { }
 
   @Get('/:id')
   public async Get(
@@ -94,4 +103,40 @@ export class OrderController {
       });
     }
   }
+
+  @Put(':id/status/:status')
+  public async PutStatusById(
+    @Res() res,
+    @Param('id', new ParseUUIDPipe({ version: '4' })) orderId: string,
+    @Param('status') status: OrderStatusEnum,
+  ) {
+    try {
+      await this.putOrderStatusById.putStatusByOrderId(orderId, status);
+      return res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK
+      });
+    } catch (err) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
+    }
+  }
+
+  @Post()
+  public async Create(@Res() res, @Body() orderDto: OrderDTO) {
+    try {
+      const orderId = await this.postOrder.postOrder(orderDto);
+      return res.status(HttpStatus.CREATED).json({
+        statusCode: HttpStatus.CREATED,
+        data: orderId,
+      });
+    } catch (err) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
+    }
+  }
 }
+

@@ -8,6 +8,8 @@ import {
   HttpStatus,
   Delete,
   Body,
+  Put,
+  Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ICreateProductApplication } from '../../../../core/Product/application/interfaces/createProduct.interface';

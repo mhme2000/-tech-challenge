@@ -3,6 +3,8 @@ export const ORDER_TYPES = {
     IGetOrderByIdApplication: 'IGetOrderByIdApplication',
     IGetOrdersByStoreId: 'IGetOrdersByStoreId',
     IGetOrdersByStoreIdAndStatus: 'IGetOrdersByStoreIdAndStatus',
+    IPutStatusById: 'IPutStatusById',
+    IPostOrder: 'IPostOrder',
   },
   repositories: {
     IOrderRepository: 'IOrderRepository',

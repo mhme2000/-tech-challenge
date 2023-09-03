@@ -7,6 +7,7 @@ import { Order } from '../core/Order/domain/entities/order.entity';
 import { ORDER_TYPES } from '../core/Order/types';
 import { GetOrdersByStoreId } from '../core/Order/application/getOrdersByStoreId.application';
 import { GetOrdersByStoreIdAndStatus } from '../core/Order/application/getOrdersByStoreIdAndStatus.application';
+import { PutStatusById } from 'src/core/Order/application/putStatusByStoreId.application';
 
 // Order
 const getOrderByIdApp = {
@@ -24,6 +25,16 @@ const getOrdersByStoreIdAndStatus = {
   useClass: GetOrdersByStoreIdAndStatus,
 };
 
+const postOrder = {
+  provide: ORDER_TYPES.applications.IPostOrder,
+  useClass: GetOrdersByStoreIdAndStatus,
+};
+
+const putStatusByOrderId  = {
+  provide: ORDER_TYPES.applications.IPutStatusById,
+  useClass: PutStatusById,
+};
+
 const orderRepository = {
   provide: ORDER_TYPES.repositories.IOrderRepository,
   useClass: OrderRepository,
@@ -33,8 +44,10 @@ const orderRepository = {
   controllers: [OrderController],
   imports: [TypeOrmModule.forFeature([Order])],
   providers: [
-    getOrderByIdApp,
     orderRepository,
+    postOrder,
+    putStatusByOrderId,
+    getOrderByIdApp,
     getOrdersByStoreId,
     getOrdersByStoreIdAndStatus,
   ],

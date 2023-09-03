@@ -12,7 +12,6 @@ export class GetOrdersByStoreId implements IGetOrdersByStoreId {
   ) {}
 
   async getByStoreId(storeId: string): Promise<Order[]> {
-    console.log({ application: storeId });
     return await this.orderRepository.getByStoreId(storeId);
   }
 }

@@ -30,7 +30,7 @@ export class Order {
 
   @JoinColumn()
   @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId)
-  orderItems: OrderItem[];
+  orderItems?: OrderItem[];
 
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;

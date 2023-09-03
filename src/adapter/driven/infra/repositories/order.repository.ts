@@ -4,12 +4,33 @@ import { Order } from '../../../../core/Order/domain/entities/order.entity';
 import { IOrderRepository } from '../../../../core/Order/domain/repositories/interfaces/orderRepository.interface';
 import { Repository } from 'typeorm';
 import { OrderStatusEnum } from 'src/core/Order/domain/enums/orderStatus.enum';
+import { OrderStatus } from 'src/core/Order/domain/entities/orderStatus.entity';
+import { OrderItem } from 'src/core/Order/domain/entities/orderItem.entity';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
   constructor(
     @InjectRepository(Order) private orderRepository: Repository<Order>,
+    @InjectRepository(OrderItem) private orderItemRepository: Repository<OrderItem>,
+    @InjectRepository(OrderStatus) private orderStatusRepository: Repository<OrderStatus>,
   ) {}
+  async createOrderItem(orderItem: OrderItem): Promise<void> {
+    await this.orderItemRepository.save(orderItem);
+  }
+  async createOrUpdateOrder(order: Order): Promise<string> {
+    const orderCreated = await this.orderRepository.save(order);
+    return orderCreated.id;
+  }
+  async getStatusByDescription(status: string): Promise<OrderStatus> {
+    return await this.orderStatusRepository
+      .createQueryBuilder('orderStatus')
+      .where('orderStatus.status = :status', { status })
+      .getOne();
+  }
+
+  async putStatusByOrderId(order: Order): Promise<void> {
+    await this.orderRepository.save(order);
+  }
 
   async getByStoreId(storeId: string): Promise<Order[]> {
     return await this.orderRepository.findBy({ storeId });
