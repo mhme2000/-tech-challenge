@@ -16,8 +16,8 @@ import { IGetAllProductsApplication } from '../../../../core/Product/application
 import { IGetProductByCategoryIdApplication } from '../../../../core/Product/application/interfaces/getProductByCategoryId.interface';
 import { IGetProductByIdApplication } from '../../../../core/Product/application/interfaces/getProductById.interface';
 import { IUpdateProductByIdApplication } from '../../../../core/Product/application/interfaces/updateProductById.interface';
-import {CreateProductDTO} from '../../dtos/CreateProductDTO.dto';
-import {UpdateProductDTO} from '../../dtos/UpdateProductDTO.dto';
+import { CreateProductDTO } from '../../dtos/CreateProductDTO.dto';
+import { UpdateProductDTO } from '../../dtos/UpdateProductDTO.dto';
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {

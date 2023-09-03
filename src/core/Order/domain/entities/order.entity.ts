@@ -33,7 +33,10 @@ export class Order {
   orderItems: OrderItem[];
 
   @JoinColumn({ name: 'payment_status_id' })
-  @OneToOne(() => OrderPaymentStatus, (orderPaymentStatus: OrderPaymentStatus) => orderPaymentStatus.id)
+  @OneToOne(
+    () => OrderPaymentStatus,
+    (orderPaymentStatus: OrderPaymentStatus) => orderPaymentStatus.id,
+  )
   paymentStatus: OrderPaymentStatus;
 
   @CreateDateColumn({ name: 'creation_date' })
