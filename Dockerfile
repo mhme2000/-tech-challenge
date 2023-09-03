@@ -17,7 +17,7 @@ RUN yarn --only=production && yarn cache clean --force
 ENV PORT=3000
 ENV NODE_ENV=production
 
-RUN chmod +x wait-for-pgsql.sh
+RUN chmod +x entrypoint.sh
 
 EXPOSE 3000
 
