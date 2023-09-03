@@ -1,8 +1,7 @@
 services:
   api:
     container_name: api
-    build: .
-        
+    image: api:0.0.3
     ports:
       - "3000:3000"
     environment:
@@ -18,7 +17,6 @@ services:
     networks:
       - nest-js-network
 
-
   postgres:
     container_name: postgres
     image: postgres
@@ -32,8 +30,6 @@ services:
       - '5432:5432'
     volumes:
       - tech-challenge-database:/var/lib/postgresql/data
-      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
     networks:
       - nest-js-network
 
