@@ -11,28 +11,33 @@ import { OrderStatus } from 'src/core/Order/domain/entities/orderStatus.entity';
 import { ORDER_TYPES } from 'src/core/Order/types';
 
 const getOrderByExternalPaymentId = {
-    provide: ORDER_TYPES.applications.IGetOrderByExternalPaymentId,
-    useClass: GetOrderByExternalPaymentIdApplication,
+  provide: ORDER_TYPES.applications.IGetOrderByExternalPaymentId,
+  useClass: GetOrderByExternalPaymentIdApplication,
 };
 
 const orderRepository = {
-    provide: ORDER_TYPES.repositories.IOrderRepository,
-    useClass: OrderRepository,
+  provide: ORDER_TYPES.repositories.IOrderRepository,
+  useClass: OrderRepository,
 };
 
 const updateOrderPaymentStatus = {
-    provide: ORDER_TYPES.applications.IUpdateOrderPaymentStatus,
-    useClass: UpdateOrderPaymentStatus,
+  provide: ORDER_TYPES.applications.IUpdateOrderPaymentStatus,
+  useClass: UpdateOrderPaymentStatus,
 };
 
 const updateOrderStatus = {
-    provide: ORDER_TYPES.applications.IUpdateOrderStatus,
-    useClass: UpdateOrderStatus,
+  provide: ORDER_TYPES.applications.IUpdateOrderStatus,
+  useClass: UpdateOrderStatus,
 };
 
 @Module({
-    controllers: [PaymentController],
-    imports: [TypeOrmModule.forFeature([Order, OrderStatus, OrderItem])],
-    providers: [getOrderByExternalPaymentId, orderRepository, updateOrderPaymentStatus, updateOrderStatus],
+  controllers: [PaymentController],
+  imports: [TypeOrmModule.forFeature([Order, OrderStatus, OrderItem])],
+  providers: [
+    getOrderByExternalPaymentId,
+    orderRepository,
+    updateOrderPaymentStatus,
+    updateOrderStatus,
+  ],
 })
-export class PaymentModule { }
+export class PaymentModule {}

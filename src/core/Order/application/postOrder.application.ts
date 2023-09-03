@@ -7,9 +7,7 @@ import { Order } from '../domain/entities/order.entity';
 import { OrderStatusEnum } from '../domain/enums/orderStatus.enum';
 import { OrderItem } from '../domain/entities/orderItem.entity';
 import { OrderPaymentStatusEnum } from '../domain/enums/paymentStatus.enum';
-const { 
-  v4: uuidv4,
-} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 @Injectable()
 export class PostOrder implements IPostOrder {
@@ -32,7 +30,7 @@ export class PostOrder implements IPostOrder {
         OrderStatusEnum.PENDING_PAYMENT,
       ),
       paymentStatus: OrderPaymentStatusEnum.PENDING,
-      externalPaymentId: uuidv4()
+      externalPaymentId: uuidv4(),
     };
     const orderId = await this.orderRepository.createOrUpdateOrder(order);
     order.id = orderId;

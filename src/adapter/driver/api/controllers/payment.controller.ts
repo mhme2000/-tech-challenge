@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Inject,
-  Res,
-  HttpStatus,
-  Body,
-} from '@nestjs/common';
+import { Controller, Get, Inject, Res, HttpStatus, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ORDER_TYPES } from '../../../../core/Order/types';
 import { PaymentWebhookMercadoPagoDTO } from '../../dtos/PaymentWebhookMercadoPagoDTO';
