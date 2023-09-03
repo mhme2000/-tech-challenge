@@ -3,7 +3,7 @@ import { PRODUCT_TYPES } from './types';
 import { IProductRepository } from '../domain/repositories/interfaces/productRepository.interface';
 import { Product } from '../domain/entities/product.entity';
 import { ICreateProductApplication } from './interfaces/createProduct.interface';
-import { AddOrUpdateProductDto } from '../domain/dtos/addOrUpdateProductDto';
+import { CreateProductDTO } from '../../../adapter/driver/dtos/CreateProductDTO.dto';
 
 @Injectable()
 export class CreateProductApplication implements ICreateProductApplication {
@@ -11,13 +11,17 @@ export class CreateProductApplication implements ICreateProductApplication {
     @Inject(PRODUCT_TYPES.repositories.IProductRepository)
     private productRepository: IProductRepository,
   ) {}
-  async createProduct(productDto: AddOrUpdateProductDto): Promise<Product> {
+  async createProduct(productDto: CreateProductDTO): Promise<Product> {
     const product: Partial<Product> = {
       id: null,
       name: productDto.name,
       description: productDto.description,
+      price: productDto.price,
+      storeId: productDto.storeId,
+      image: productDto.image,
       creationDate: new Date(),
     };
+    product.category.id = productDto.categoryId;
     return await this.productRepository.addOrUpdate(product);
   }
 }
