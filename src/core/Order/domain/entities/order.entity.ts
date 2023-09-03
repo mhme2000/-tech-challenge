@@ -5,11 +5,13 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { OrderStatus } from './orderStatus.entity';
 import { OrderItem } from './orderItem.entity';
+import { OrderPaymentStatus } from './orderPaymentStatus.entity';
 
 @Entity()
 export class Order {
@@ -29,6 +31,10 @@ export class Order {
   @JoinColumn()
   @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId)
   orderItems: OrderItem[];
+
+  @JoinColumn({ name: 'payment_status_id' })
+  @OneToOne(() => OrderPaymentStatus, (orderPaymentStatus: OrderPaymentStatus) => orderPaymentStatus.id)
+  paymentStatus: OrderPaymentStatus;
 
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
