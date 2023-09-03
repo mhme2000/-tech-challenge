@@ -34,7 +34,7 @@ export class Order {
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
 
-  @PrimaryColumn({ name: 'external_payment_id' })
+  @Column({ name: 'external_payment_id' })
   externalPaymentId: string;
 
   @Column({

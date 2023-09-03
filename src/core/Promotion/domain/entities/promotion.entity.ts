@@ -27,7 +27,8 @@ export class Promotion {
   endDate: Date;
 
   @Column({
-    type: 'enum',
+    type: 'text',
+    name: 'discount_type',
     enum: DiscountTypeEnum,
     default: DiscountTypeEnum.CURRENCY,
   })

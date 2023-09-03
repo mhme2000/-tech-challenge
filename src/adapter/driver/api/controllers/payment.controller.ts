@@ -1,9 +1,7 @@
 import {
   Controller,
   Get,
-  Param,
   Inject,
-  ParseUUIDPipe,
   Res,
   HttpStatus,
   Body,
@@ -20,7 +18,7 @@ import { IGetOrderByExternalPaymentId } from 'src/core/Order/application/interfa
 
 @ApiTags('Payment')
 @Controller('payment')
-export class OrderController {
+export class PaymentController {
   constructor(
     @Inject(ORDER_TYPES.applications.IGetOrderByExternalPaymentId)
     private getOrderByExternalPaymentIdApp: IGetOrderByExternalPaymentId,
@@ -63,6 +61,7 @@ export class OrderController {
         orderPaymentStatus = OrderPaymentStatusEnum.FAILURE;
         orderStatus = OrderStatusEnum.CANCELED;
       }
+
       await this.updateOrderPaymentStatus.updateOrderPaymentStatus(
         order.id,
         orderPaymentStatus,

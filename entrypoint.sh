@@ -1,3 +1,3 @@
-npm run migration:run
+yarn migration:run
 
-npm run start:prod
+yarn start:prod

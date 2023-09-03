@@ -9,6 +9,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './adapter/driver/api/controllers/health.controller';
 import { HttpModule } from '@nestjs/axios';
 import { dataSourceOptions } from './db/datasource';
+import { PaymentModule } from './modules/payment.module';
 
 @Module({
   controllers: [HealthController],
@@ -20,6 +21,7 @@ import { dataSourceOptions } from './db/datasource';
     OrderModule,
     ProductModule,
     StoreModule,
+    PaymentModule,
     CustomerModule,
   ],
 })
