@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Res, HttpStatus, Body } from '@nestjs/common';
+import { Controller, Inject, Res, HttpStatus, Body, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ORDER_TYPES } from '../../../../core/Order/types';
 import { PaymentWebhookMercadoPagoDTO } from '../../dtos/PaymentWebhookMercadoPagoDTO';
@@ -21,7 +21,7 @@ export class PaymentController {
     private updateOrderStatus: IUpdateOrderStatus,
   ) {}
 
-  @Get('/webhooks/provider/mercadopago')
+  @Post('/webhooks/provider/mercadopago')
   public async Get(
     @Res() res,
     @Body() mercadoPagoProviderDTO: PaymentWebhookMercadoPagoDTO,
