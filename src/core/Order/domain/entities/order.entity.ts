@@ -32,13 +32,6 @@ export class Order {
   @OneToMany(() => OrderItem, (orderItem: OrderItem) => orderItem.orderId)
   orderItems: OrderItem[];
 
-  @JoinColumn({ name: 'payment_status_id' })
-  @OneToOne(
-    () => OrderPaymentStatus,
-    (orderPaymentStatus: OrderPaymentStatus) => orderPaymentStatus.id,
-  )
-  paymentStatus: OrderPaymentStatus;
-
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;
 
