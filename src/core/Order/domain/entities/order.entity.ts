@@ -5,13 +5,11 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { OrderStatus } from './orderStatus.entity';
 import { OrderItem } from './orderItem.entity';
-import { OrderPaymentStatus } from './orderPaymentStatus.entity';
 import { OrderPaymentStatusEnum } from '../enums/paymentStatus.enum';
 
 @Entity()
