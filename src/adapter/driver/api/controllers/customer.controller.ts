@@ -40,7 +40,7 @@ export class CustomerController {
             id: customerId,
           },
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -48,7 +48,7 @@ export class CustomerController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -64,7 +64,7 @@ export class CustomerController {
           statusCode: statusCode,
           data: customer,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -72,7 +72,7 @@ export class CustomerController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 }

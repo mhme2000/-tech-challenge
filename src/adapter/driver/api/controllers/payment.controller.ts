@@ -68,15 +68,14 @@ export class PaymentController {
       );
       await this.updateOrderStatus.updateOrderStatus(order.id, orderStatus);
 
-      res.status(HttpStatus.OK).send();
+      return res.status(HttpStatus.OK).send();
     } catch (err) {
-      res
+      return res
         .status(HttpStatus.BAD_REQUEST)
         .json({
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
-        })
-        .send();
+        }).send();
     }
   }
 }

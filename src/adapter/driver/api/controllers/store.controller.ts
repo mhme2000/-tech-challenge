@@ -44,16 +44,14 @@ export class StoreController {
         .json({
           statusCode: statusCode,
           data: store,
-        })
-        .send();
+        });
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
         .json({
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
-        })
-        .send();
+        });
     }
   }
 
@@ -67,7 +65,7 @@ export class StoreController {
           statusCode: HttpStatus.OK,
           data: stores,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -75,7 +73,7 @@ export class StoreController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -92,7 +90,7 @@ export class StoreController {
           statusCode: HttpStatus.OK,
           data: null,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -100,7 +98,7 @@ export class StoreController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -119,7 +117,7 @@ export class StoreController {
           statusCode: HttpStatus.OK,
           data: store,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -127,7 +125,7 @@ export class StoreController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -141,7 +139,7 @@ export class StoreController {
           statusCode: HttpStatus.CREATED,
           data: store,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -149,7 +147,7 @@ export class StoreController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 }

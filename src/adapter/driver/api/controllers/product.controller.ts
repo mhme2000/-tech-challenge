@@ -47,24 +47,22 @@ export class ProductController {
       const product = await this.getProductByIdApp.getProductById(productId);
 
       if (!product) {
-        res.status(HttpStatus.NOT_FOUND).send();
+        return res.status(HttpStatus.NOT_FOUND).send();
       }
 
-      res
+      return res
         .status(HttpStatus.OK)
         .json({
           statusCode: HttpStatus.OK,
           data: product,
-        })
-        .send();
+        }).send();
     } catch (err) {
-      res
+      return res
         .status(HttpStatus.BAD_REQUEST)
         .json({
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
-        })
-        .send();
+        }).send();
     }
   }
 
@@ -78,7 +76,7 @@ export class ProductController {
           statusCode: HttpStatus.OK,
           data: products,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -86,7 +84,7 @@ export class ProductController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -105,7 +103,7 @@ export class ProductController {
           statusCode: HttpStatus.OK,
           data: products,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -113,7 +111,7 @@ export class ProductController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -131,8 +129,7 @@ export class ProductController {
         .json({
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
-        })
-        .send();
+        });
     }
   }
 
@@ -154,7 +151,7 @@ export class ProductController {
           statusCode: HttpStatus.OK,
           data: product,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -162,7 +159,7 @@ export class ProductController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 

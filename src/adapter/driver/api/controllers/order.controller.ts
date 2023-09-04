@@ -54,7 +54,7 @@ export class OrderController {
           statusCode: statusCode,
           data: order,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -62,7 +62,7 @@ export class OrderController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
@@ -81,7 +81,7 @@ export class OrderController {
           statusCode: statusCode,
           data: orders,
         })
-        .send();
+        ;
     } catch (err) {
       res
         .status(HttpStatus.BAD_REQUEST)
@@ -89,7 +89,7 @@ export class OrderController {
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
         })
-        .send();
+        ;
     }
   }
 
