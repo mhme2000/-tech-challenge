@@ -20,7 +20,6 @@ import { IGetProductByIdApplication } from '../../../../core/Product/application
 import { IUpdateProductByIdApplication } from '../../../../core/Product/application/interfaces/updateProductById.interface';
 import { CreateProductDTO } from '../../dtos/CreateProductDTO.dto';
 import { UpdateProductDTO } from '../../dtos/UpdateProductDTO.dto';
-import { HttpStatusCode } from 'axios';
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {

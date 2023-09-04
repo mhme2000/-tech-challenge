@@ -7,6 +7,7 @@ import { Order } from '../domain/entities/order.entity';
 import { OrderStatusEnum } from '../domain/enums/orderStatus.enum';
 import { OrderItem } from '../domain/entities/orderItem.entity';
 import { OrderPaymentStatusEnum } from '../domain/enums/paymentStatus.enum';
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { v4: uuidv4 } = require('uuid');
 
 @Injectable()

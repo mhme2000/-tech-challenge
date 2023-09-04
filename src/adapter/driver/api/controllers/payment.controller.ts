@@ -15,7 +15,6 @@ import { OrderPaymentStatusEnum } from 'src/core/Order/domain/enums/paymentStatu
 import { IUpdateOrderPaymentStatus } from 'src/core/Order/application/interfaces/updateOrderPaymentStatus.interface';
 import { IUpdateOrderStatus } from 'src/core/Order/application/interfaces/updateOrderStatus.interface';
 import { IGetOrderByExternalPaymentId } from 'src/core/Order/application/interfaces/getOrderByExternalPaymentId.interface';
-import { Response } from 'express';
 
 @ApiTags('Payment')
 @Controller('payment')

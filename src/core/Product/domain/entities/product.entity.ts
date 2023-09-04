@@ -2,13 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiHideProperty } from '@nestjs/swagger';
-import { Category } from './category.entity';
 
 @Entity()
 export class Product {
