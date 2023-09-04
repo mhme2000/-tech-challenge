@@ -21,10 +21,10 @@ export class PostOrder implements IPostOrder {
     const today = new Date(timeElapsed);
     const orderStatus = await this.orderRepository.getStatusByDescription(
       OrderStatusEnum.PENDING_PAYMENT,
-    )
+    );
 
     const previsionDeliveryDate = today;
-    previsionDeliveryDate.setHours(previsionDeliveryDate.getHours()+1);
+    previsionDeliveryDate.setHours(previsionDeliveryDate.getHours() + 1);
 
     const order: Partial<Order> = {
       creationDate: today,

@@ -34,6 +34,6 @@ export class OrderDTO {
   @ApiProperty({ type: String })
   customerId: string;
 
-  @ApiProperty({ type: OrderItemDTO, isArray:true })
+  @ApiProperty({ type: OrderItemDTO, isArray: true })
   orderItems: OrderItemDTO[];
 }

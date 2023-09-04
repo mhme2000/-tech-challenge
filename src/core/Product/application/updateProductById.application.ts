@@ -12,15 +12,18 @@ export class UpdateProductByIdApplication
     private productRepository: IProductRepository,
   ) {}
 
-  async updateProductById(productId: string, productData: Partial<Product>): Promise<Product> {
+  async updateProductById(
+    productId: string,
+    productData: Partial<Product>,
+  ): Promise<Product> {
     const productOld = await this.productRepository.getById(productId);
 
     if (productOld == null)
       throw new HttpException('Product not found.', HttpStatus.NOT_FOUND);
 
     return await this.productRepository.addOrUpdate({
-      ... productOld,
-      ... productData
+      ...productOld,
+      ...productData,
     });
   }
 }

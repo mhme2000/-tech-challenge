@@ -39,15 +39,21 @@ export class StoreController {
     try {
       const store = await this.getStoreByIdApp.getStoreById(storeId);
       const statusCode = store ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-      return res.status(statusCode).json({
-        statusCode: statusCode,
-        data: store,
-      });
+      res
+        .status(statusCode)
+        .json({
+          statusCode: statusCode,
+          data: store,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -55,15 +61,21 @@ export class StoreController {
   public async Get(@Res() res) {
     try {
       const stores = await this.getAllStoresApp.getAllStores();
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: stores,
-      });
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: stores,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -74,15 +86,21 @@ export class StoreController {
   ) {
     try {
       await this.deleteStoreByIdApp.deleteStoreById(storeId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: null,
-      });
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: null,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -95,15 +113,21 @@ export class StoreController {
     try {
       storeDto.storeId = storeId;
       const store = await this.updateStoreByIdApp.updateStoreById(storeDto);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: store,
-      });
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: store,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -111,15 +135,21 @@ export class StoreController {
   public async Create(@Res() res, @Body() storeDto: AddOrUpdateStoreDto) {
     try {
       const store = await this.createStoreApp.createStore(storeDto);
-      return res.status(HttpStatus.CREATED).json({
-        statusCode: HttpStatus.CREATED,
-        data: store,
-      });
+      res
+        .status(HttpStatus.CREATED)
+        .json({
+          statusCode: HttpStatus.CREATED,
+          data: store,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 }

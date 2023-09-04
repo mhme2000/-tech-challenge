@@ -1,4 +1,11 @@
-import { Controller, Inject, Res, HttpStatus, Body, Post } from '@nestjs/common';
+import {
+  Controller,
+  Inject,
+  Res,
+  HttpStatus,
+  Body,
+  Post,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ORDER_TYPES } from '../../../../core/Order/types';
 import { PaymentWebhookMercadoPagoDTO } from '../../dtos/PaymentWebhookMercadoPagoDTO';
@@ -64,10 +71,13 @@ export class PaymentController {
 
       res.status(HttpStatus.OK).send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 }

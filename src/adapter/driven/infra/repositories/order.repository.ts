@@ -23,7 +23,7 @@ export class OrderRepository implements IOrderRepository {
       externalPaymentId: externalPaymentId,
     });
 
-    return order
+    return order;
   }
 
   async updateOrderStatus(
@@ -44,9 +44,6 @@ export class OrderRepository implements IOrderRepository {
     const orderCreated = await this.orderRepository.save(order);
     return orderCreated.id;
   }
-
-
-
 
   async getStatusByDescription(status: string): Promise<OrderStatus> {
     return await this.orderStatusRepository

@@ -25,7 +25,7 @@ export class CreateProductDTO {
     type: String,
   })
   description: string;
-  
+
   @ApiProperty({
     type: String,
   })

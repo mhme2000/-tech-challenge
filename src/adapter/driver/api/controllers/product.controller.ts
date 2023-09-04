@@ -46,21 +46,26 @@ export class ProductController {
   ) {
     try {
       const product = await this.getProductByIdApp.getProductById(productId);
-      
+
       if (!product) {
         res.status(HttpStatus.NOT_FOUND).send();
       }
-      
-      res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: product,
-      }).send();
 
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: product,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -68,15 +73,21 @@ export class ProductController {
   public async Get(@Res() res) {
     try {
       const products = await this.getAllProductsApp.getAllProducts();
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: products,
-      });
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: products,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -89,15 +100,21 @@ export class ProductController {
     try {
       const products =
         await this.getProductByCategoryIdApp.getProductByCategoryId(categoryId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: products,
-      });
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: products,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -108,12 +125,15 @@ export class ProductController {
   ) {
     try {
       await this.deleteProductByIdApp.deleteProductById(productId);
-      return res.status(HttpStatus.OK);
+      res.status(HttpStatus.OK).send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -124,20 +144,26 @@ export class ProductController {
     @Body() productDto: UpdateProductDTO,
   ) {
     try {
-      
       const product = await this.updateProductByIdApp.updateProductById(
-        productId, productDto,
+        productId,
+        productDto,
       );
 
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: product,
-      });
+      res
+        .status(HttpStatus.OK)
+        .json({
+          statusCode: HttpStatus.OK,
+          data: product,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 

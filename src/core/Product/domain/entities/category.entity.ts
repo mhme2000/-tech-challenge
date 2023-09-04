@@ -24,5 +24,4 @@ export class Category {
     name: 'description',
   })
   description: string;
-
 }

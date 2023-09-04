@@ -43,7 +43,7 @@ export class Product {
   image: string;
 
   @Column({
-    name: 'categoryId'
+    name: 'categoryId',
   })
   category: string;
 }

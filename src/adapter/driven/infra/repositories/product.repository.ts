@@ -10,10 +10,9 @@ export class ProductRepository implements IProductRepository {
     @InjectRepository(Product) private repository: Repository<Product>,
   ) {}
   async getById(productId: string): Promise<Product> {
-    return await this.repository.findOneBy({id: productId});
-
+    return await this.repository.findOneBy({ id: productId });
   }
-  
+
   async getByCategoryId(categoryId: string): Promise<Product[]> {
     return await this.repository
       .createQueryBuilder('product')
@@ -32,6 +31,4 @@ export class ProductRepository implements IProductRepository {
   async addOrUpdate(product: Partial<Product>): Promise<Product> {
     return await this.repository.save(product);
   }
-
-
 }

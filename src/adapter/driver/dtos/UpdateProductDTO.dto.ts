@@ -5,20 +5,19 @@ export class UpdateProductDTO {
     type: String,
   })
   name: string;
-    
+
   @ApiProperty({
     type: Number,
   })
   price: number;
-  
+
   @ApiProperty({
     type: String,
   })
   description: string;
-  
+
   @ApiProperty({
     type: String,
   })
   image: string;
-  
 }

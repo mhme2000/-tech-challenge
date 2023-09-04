@@ -32,17 +32,23 @@ export class CustomerController {
       const customerId = await this.createCustomerApplication.createCustomer(
         CustomerMapper.dtoToEntity(customerDto),
       );
-      return res.status(HttpStatus.CREATED).json({
-        statusCode: HttpStatus.CREATED,
-        data: {
-          id: customerId,
-        },
-      });
+      res
+        .status(HttpStatus.CREATED)
+        .json({
+          statusCode: HttpStatus.CREATED,
+          data: {
+            id: customerId,
+          },
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 
@@ -52,15 +58,21 @@ export class CustomerController {
       const customer =
         await this.getCustomerByDocumentApplication.getByDocument(document);
       const statusCode = customer ? HttpStatus.CREATED : HttpStatus.NOT_FOUND;
-      return res.status(statusCode).json({
-        statusCode: statusCode,
-        data: customer,
-      });
+      res
+        .status(statusCode)
+        .json({
+          statusCode: statusCode,
+          data: customer,
+        })
+        .send();
     } catch (err) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message: err,
-      });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json({
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err,
+        })
+        .send();
     }
   }
 }
