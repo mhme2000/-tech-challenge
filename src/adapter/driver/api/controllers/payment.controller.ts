@@ -8,6 +8,7 @@ import { OrderPaymentStatusEnum } from 'src/core/Order/domain/enums/paymentStatu
 import { IUpdateOrderPaymentStatus } from 'src/core/Order/application/interfaces/updateOrderPaymentStatus.interface';
 import { IUpdateOrderStatus } from 'src/core/Order/application/interfaces/updateOrderStatus.interface';
 import { IGetOrderByExternalPaymentId } from 'src/core/Order/application/interfaces/getOrderByExternalPaymentId.interface';
+import { Response } from 'express';
 
 @ApiTags('Payment')
 @Controller('payment')
@@ -22,7 +23,7 @@ export class PaymentController {
   ) {}
 
   @Post('/webhooks/provider/mercadopago')
-  public async Get(
+  public async PostPaymentStatus(
     @Res() res,
     @Body() mercadoPagoProviderDTO: PaymentWebhookMercadoPagoDTO,
   ) {
@@ -60,7 +61,8 @@ export class PaymentController {
         orderPaymentStatus,
       );
       await this.updateOrderStatus.updateOrderStatus(order.id, orderStatus);
-      return res.status(HttpStatus.OK);
+
+      res.status(HttpStatus.OK).send();
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         statusCode: HttpStatus.BAD_REQUEST,

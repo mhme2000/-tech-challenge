@@ -19,26 +19,31 @@ export class PostOrder implements IPostOrder {
   async postOrder(orderDto: OrderDTO): Promise<string> {
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
-    const order: Order = {
-      id: null,
+    const orderStatus = await this.orderRepository.getStatusByDescription(
+      OrderStatusEnum.PENDING_PAYMENT,
+    )
+
+    const previsionDeliveryDate = today;
+    previsionDeliveryDate.setHours(previsionDeliveryDate.getHours()+1);
+
+    const order: Partial<Order> = {
       creationDate: today,
       customerId: orderDto.customerId,
-      previsionDeliveryDate: orderDto.previsionDeliveryDate,
+      previsionDeliveryDate: previsionDeliveryDate,
       totalPrice: 0,
       storeId: orderDto.storeId,
-      statusId: await this.orderRepository.getStatusByDescription(
-        OrderStatusEnum.PENDING_PAYMENT,
-      ),
+      statusId: orderStatus,
       paymentStatus: OrderPaymentStatusEnum.PENDING,
       externalPaymentId: uuidv4(),
     };
+
     const orderId = await this.orderRepository.createOrUpdateOrder(order);
     order.id = orderId;
+
     let totalPrice = 0;
     orderDto.orderItems.forEach(async (orderItemDto) => {
       totalPrice = totalPrice + (orderItemDto.price - orderItemDto.discount);
-      const orderItem: OrderItem = {
-        id: null,
+      const orderItem: Omit<OrderItem, 'id'> = {
         orderId: orderId,
         quantity: orderItemDto.quantity,
         price: orderItemDto.price,

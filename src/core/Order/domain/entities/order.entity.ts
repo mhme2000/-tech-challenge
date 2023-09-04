@@ -17,10 +17,10 @@ export class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @PrimaryColumn({ name: 'store_id' })
+  @Column({ name: 'store_id' })
   storeId: string;
 
-  @PrimaryColumn({ name: 'customer_id' })
+  @Column({ name: 'customer_id' })
   customerId: string;
 
   @ManyToOne(() => OrderStatus, (orderStatus: OrderStatus) => orderStatus.id)

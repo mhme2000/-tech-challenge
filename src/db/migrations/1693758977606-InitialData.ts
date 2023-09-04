@@ -11,10 +11,10 @@ export class InitialData1693767623666 implements MigrationInterface {
       `CREATE TABLE IF NOT EXISTS  "order_status" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "status" text NOT NULL DEFAULT 'RECEIVED', CONSTRAINT "PK_8ea75b2a26f83f3bc98b9c6aaf6" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE IF NOT EXISTS  "order_item" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "product_id" character varying NOT NULL, "order_id" character varying NOT NULL, "quantity" integer NOT NULL, "total_price" numeric(3,2) NOT NULL, "discount" numeric(3,2) NOT NULL)`,
+      `CREATE TABLE IF NOT EXISTS  "order_item" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "product_id" character varying NOT NULL, "order_id" character varying NOT NULL, "quantity" integer NOT NULL, "total_price" numeric(5,2) NOT NULL, "discount" numeric(5,2) NOT NULL)`,
     );
     await queryRunner.query(
-      `CREATE TABLE IF NOT EXISTS  "pricing" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "store_id" character varying NOT NULL, "product_id" character varying NOT NULL, "total_price" numeric(3,2) NOT NULL)`,
+      `CREATE TABLE IF NOT EXISTS  "pricing" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "store_id" character varying NOT NULL, "product_id" character varying NOT NULL, "total_price" numeric(5,2) NOT NULL)`,
     );
     await queryRunner.query(
       `CREATE TABLE IF NOT EXISTS  "product" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "store_id" character varying NOT NULL, "creation_date" TIMESTAMP NOT NULL DEFAULT now(), "name" character varying NOT NULL, "price" integer NOT NULL, "description" character varying NOT NULL, "image" character varying NOT NULL, "categoryId" uuid, "categoryStoreId" character varying)`,
@@ -26,7 +26,7 @@ export class InitialData1693767623666 implements MigrationInterface {
       `CREATE TABLE IF NOT EXISTS  "order" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "store_id" character varying NOT NULL, "customer_id" character varying NOT NULL, "creation_date" TIMESTAMP NOT NULL DEFAULT now(), "external_payment_id" character varying NOT NULL, "paymentStatus" text NOT NULL DEFAULT 'PENDING', "prevision_delivery_date" TIMESTAMP NOT NULL DEFAULT now(), "total_price" numeric(5,2) NOT NULL, "status_id" uuid)`,
     );
     await queryRunner.query(
-      `CREATE TABLE IF NOT EXISTS  "promotion" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "store_id" character varying NOT NULL, "name" character varying NOT NULL, "start_date" TIMESTAMP NOT NULL, "end_date" TIMESTAMP NOT NULL, "discount_type" text NOT NULL DEFAULT '1', "discount_value" numeric NOT NULL, "total_price" numeric(3,2) NOT NULL)`,
+      `CREATE TABLE IF NOT EXISTS  "promotion" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "store_id" character varying NOT NULL, "name" character varying NOT NULL, "start_date" TIMESTAMP NOT NULL, "end_date" TIMESTAMP NOT NULL, "discount_type" text NOT NULL DEFAULT '1', "discount_value" numeric NOT NULL, "total_price" numeric(5,2) NOT NULL)`,
     );
     await queryRunner.query(
       `CREATE TABLE IF NOT EXISTS  "product_promotion" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "product_id" character varying NOT NULL, "promotion_id" character varying NOT NULL)`,

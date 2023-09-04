@@ -34,10 +34,6 @@ export class OrderDTO {
   @ApiProperty({ type: String })
   customerId: string;
 
-  @IsDate()
-  @ApiProperty({ type: Date })
-  previsionDeliveryDate: Date;
-
-  @ApiProperty({ type: Array<OrderItemDTO> })
+  @ApiProperty({ type: OrderItemDTO, isArray:true })
   orderItems: OrderItemDTO[];
 }

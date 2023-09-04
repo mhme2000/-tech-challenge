@@ -107,6 +107,33 @@ export class FillDataTables1693767989342 implements MigrationInterface {
     await queryRunner.query(
       `INSERT INTO order_status
                 (id, status)
+                SELECT '5ca2cc5a-31de-4ec9-a27f-10b7144b6ee7', 'DELIVERED'
+                WHERE NOT EXISTS (
+                 SELECT id FROM order_status WHERE order_status.id  = '5ca2cc5a-31de-4ec9-a27f-10b7144b6ee7'
+                );`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO order_status
+                (id, status)
+                SELECT '1e6d552f-cc12-4c8f-87a9-1666ac38c7a7', 'IN_PREPARATION'
+                WHERE NOT EXISTS (
+                 SELECT id FROM order_status WHERE order_status.id  = '1e6d552f-cc12-4c8f-87a9-1666ac38c7a7'
+                );`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO order_status
+                (id, status)
+                SELECT 'e7559cd9-f1b3-438b-aef6-ed8085fc5b25', 'PENDING_PAYMENT'
+                WHERE NOT EXISTS (
+                 SELECT id FROM order_status WHERE order_status.id  = 'e7559cd9-f1b3-438b-aef6-ed8085fc5b25'
+                );`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO order_status
+                (id, status)
                 SELECT '2e69d181-14b6-437b-b819-d56dbfd926d2', 'CANCELED'
                 WHERE NOT EXISTS (
                  SELECT id FROM order_status WHERE order_status.id  = '2e69d181-14b6-437b-b819-d56dbfd926d2'

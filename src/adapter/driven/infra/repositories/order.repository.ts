@@ -14,14 +14,16 @@ export class OrderRepository implements IOrderRepository {
     @InjectRepository(Order) private orderRepository: Repository<Order>,
     @InjectRepository(OrderItem)
     private orderItemRepository: Repository<OrderItem>,
-    @InjectRepository(Order)
+    @InjectRepository(OrderStatus)
     private orderStatusRepository: Repository<OrderStatus>,
   ) {}
 
   async getOrderByExternalPaymentId(externalPaymentId: string): Promise<Order> {
-    return await this.orderRepository.findOneBy({
+    const order = await this.orderRepository.findOneBy({
       externalPaymentId: externalPaymentId,
     });
+
+    return order
   }
 
   async updateOrderStatus(
@@ -29,19 +31,23 @@ export class OrderRepository implements IOrderRepository {
     status: OrderStatusEnum,
   ): Promise<void> {
     const order = await this.orderRepository.findOneByOrFail({ id: orderId });
-    const orderStatus = await this.orderStatusRepository.findOneBy({
+    const orderStatus = await this.orderStatusRepository.findOneByOrFail({
       status: status,
     });
     await this.orderRepository.update(order.id!, { statusId: orderStatus });
   }
 
-  async createOrderItem(orderItem: OrderItem): Promise<void> {
+  async createOrderItem(orderItem: Omit<OrderItem, 'id'>): Promise<void> {
     await this.orderItemRepository.save(orderItem);
   }
-  async createOrUpdateOrder(order: Order): Promise<string> {
+  async createOrUpdateOrder(order: Partial<Order>): Promise<string> {
     const orderCreated = await this.orderRepository.save(order);
     return orderCreated.id;
   }
+
+
+
+
   async getStatusByDescription(status: string): Promise<OrderStatus> {
     return await this.orderStatusRepository
       .createQueryBuilder('orderStatus')

@@ -13,15 +13,14 @@ export class CreateProductApplication implements ICreateProductApplication {
   ) {}
   async createProduct(productDto: CreateProductDTO): Promise<Product> {
     const product: Partial<Product> = {
-      id: null,
       name: productDto.name,
       description: productDto.description,
       price: productDto.price,
       storeId: productDto.storeId,
+      category: productDto.categoryId,
       image: productDto.image,
       creationDate: new Date(),
     };
-    product.category.id = productDto.categoryId;
     return await this.productRepository.addOrUpdate(product);
   }
 }

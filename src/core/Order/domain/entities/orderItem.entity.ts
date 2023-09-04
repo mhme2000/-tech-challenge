@@ -17,7 +17,7 @@ export class OrderItem {
   @Column({
     name: 'total_price',
     type: 'decimal',
-    precision: 3,
+    precision: 5,
     scale: 2,
     nullable: false,
   })
@@ -26,7 +26,7 @@ export class OrderItem {
   @Column({
     name: 'discount',
     type: 'decimal',
-    precision: 3,
+    precision: 5,
     scale: 2,
     nullable: false,
   })

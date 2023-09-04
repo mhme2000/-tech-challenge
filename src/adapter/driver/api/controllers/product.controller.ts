@@ -20,6 +20,7 @@ import { IGetProductByIdApplication } from '../../../../core/Product/application
 import { IUpdateProductByIdApplication } from '../../../../core/Product/application/interfaces/updateProductById.interface';
 import { CreateProductDTO } from '../../dtos/CreateProductDTO.dto';
 import { UpdateProductDTO } from '../../dtos/UpdateProductDTO.dto';
+import { HttpStatusCode } from 'axios';
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {
@@ -45,11 +46,16 @@ export class ProductController {
   ) {
     try {
       const product = await this.getProductByIdApp.getProductById(productId);
-      const statusCode = product ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-      return res.status(statusCode).json({
-        statusCode: statusCode,
+      
+      if (!product) {
+        res.status(HttpStatus.NOT_FOUND).send();
+      }
+      
+      res.status(HttpStatus.OK).json({
+        statusCode: HttpStatus.OK,
         data: product,
-      });
+      }).send();
+
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         statusCode: HttpStatus.BAD_REQUEST,
@@ -102,10 +108,7 @@ export class ProductController {
   ) {
     try {
       await this.deleteProductByIdApp.deleteProductById(productId);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: null,
-      });
+      return res.status(HttpStatus.OK);
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         statusCode: HttpStatus.BAD_REQUEST,
@@ -121,10 +124,11 @@ export class ProductController {
     @Body() productDto: UpdateProductDTO,
   ) {
     try {
-      productDto.productId = productId;
+      
       const product = await this.updateProductByIdApp.updateProductById(
-        productDto,
+        productId, productDto,
       );
+
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
         data: product,

@@ -2,7 +2,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
+  JoinColumn,
+  OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -41,6 +42,8 @@ export class Product {
   })
   image: string;
 
-  @ManyToOne(() => Category, (category: Category) => category.id)
-  category: Category;
+  @Column({
+    name: 'categoryId'
+  })
+  category: string;
 }

@@ -19,6 +19,6 @@ export interface IOrderRepository {
   ): Promise<void>;
   getStatusByDescription(status: string): Promise<OrderStatus>;
   putStatusByOrderId(order: Order): Promise<void>;
-  createOrUpdateOrder(order: Order): Promise<string>;
-  createOrderItem(orderItem: OrderItem): Promise<void>;
+  createOrUpdateOrder(order: Partial<Order>): Promise<string>;
+  createOrderItem(orderItem: Omit<OrderItem, 'id'>): Promise<void>;
 }

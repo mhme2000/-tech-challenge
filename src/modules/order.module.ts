@@ -13,6 +13,7 @@ import { UpdateOrderPaymentStatus } from '../core/Order/application/updateOrderP
 import { UpdateOrderStatus } from '../core/Order/application/updateOrderStatus.application';
 import { OrderItem } from '../core/Order/domain/entities/orderItem.entity';
 import { OrderStatus } from '../core/Order/domain/entities/orderStatus.entity';
+import { PostOrder } from '../core/Order/application/postOrder.application';
 
 // Order
 const getOrderByIdApp = {
@@ -32,7 +33,7 @@ const getOrdersByStoreIdAndStatus = {
 
 const postOrder = {
   provide: ORDER_TYPES.applications.IPostOrder,
-  useClass: GetOrdersByStoreIdAndStatus,
+  useClass: PostOrder,
 };
 
 const putStatusByOrderId = {
