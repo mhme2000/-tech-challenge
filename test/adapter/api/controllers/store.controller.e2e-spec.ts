@@ -2,9 +2,9 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import { StoreModule } from '../../../../src/modules/store.module';
-import { Store } from '../../../../src/core/Store/domain/entities/store.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpModule } from '@nestjs/axios';
+import { StoreSchema } from '../../../../src/adapter/driver/schemas/store.schema';
 
 describe('Store', () => {
   let app: INestApplication;
@@ -15,7 +15,7 @@ describe('Store', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [Store],
+          entities: [StoreSchema],
           logging: false,
           synchronize: true,
         }),

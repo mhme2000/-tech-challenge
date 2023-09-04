@@ -3,8 +3,8 @@ import { Test } from '@nestjs/testing';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { CustomerModule } from '../../../../src/modules/customer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HttpModule } from '@nestjs/axios';
-import { Customer } from '../../../../src/core/Customer/domain/entities/customer.entity';
+import { HttpModule } from '@nestjs/axios';;
+import { CustomerSchema } from '../../../../src/adapter/driver/schemas/customer.schema';
 
 describe('Customer', () => {
   let app: INestApplication;
@@ -15,7 +15,7 @@ describe('Customer', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [Customer],
+          entities: [CustomerSchema],
           logging: false,
           synchronize: true,
         }),
