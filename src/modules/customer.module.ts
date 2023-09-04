@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerRepository } from '../adapter/driven/infra/repositories/customer.repository';
 import { CustomerController } from '../adapter/driver/api/controllers/customer.controller';
 import { CreateCustomerApplication } from '../core/Customer/application/createCustomer.application';
-import { CustomerSchema } from '../adapter/driver/schemas/customer.schema';
+
 import { CUSTOMER_TYPES } from '../core/Customer/types';
 import { GetCustomerByDocumentApplication } from '../core/Customer/application/getCustomerByDocument.application';
+import { CustomerSchema } from '../adapter/driver/schemas/customer.schema';
 
 // Customer
 const createCustomerApp = {

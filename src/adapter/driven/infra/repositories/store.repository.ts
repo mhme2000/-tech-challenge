@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Store } from '../../../../core/Store/domain/entities/store.entity';
 import { IStoreRepository } from '../../../../core/Store/domain/repositories/interfaces/storeRepository.interface';
-import { StoreSchema } from '../../../../adapter/driver/schemas/store.schema';
 import { Repository } from 'typeorm';
+import { StoreSchema } from '../../../driver/schemas/store.schema';
+
 
 @Injectable()
 export class StoreRepository implements IStoreRepository {
