@@ -1,3 +1,1 @@
-yarn migration:run
-
-yarn start:prod
+yarn migration:run && yarn start:prod
