@@ -8,7 +8,7 @@ import { GetAllStoresApplication } from '../core/Store/application/getAllStores.
 import { GetStoreByIdApplication } from '../core/Store/application/getStoreById.application';
 import { STORE_TYPES } from '../core/Store/application/types';
 import { UpdateStoreByIdApplication } from '../core/Store/application/updateStoreById.application';
-import { Store } from '../core/Store/domain/entities/store.entity';
+import { StoreSchema } from '../adapter/driver/schemas/store.schema';
 // Store
 const getStoreByIdApp = {
   provide: STORE_TYPES.applications.IGetStoreByIdApplication,
@@ -37,7 +37,7 @@ const storeRepository = {
 
 @Module({
   controllers: [StoreController],
-  imports: [TypeOrmModule.forFeature([Store])],
+  imports: [TypeOrmModule.forFeature([StoreSchema])],
   providers: [
     getStoreByIdApp,
     getAllStoresApp,

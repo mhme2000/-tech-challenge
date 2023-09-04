@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerRepository } from '../adapter/driven/infra/repositories/customer.repository';
 import { CustomerController } from '../adapter/driver/api/controllers/customer.controller';
 import { CreateCustomerApplication } from '../core/Customer/application/createCustomer.application';
-import { Customer } from '../core/Customer/domain/entities/customer.entity';
+import { CustomerSchema } from '../adapter/driver/schemas/customer.schema';
 import { CUSTOMER_TYPES } from '../core/Customer/types';
 import { GetCustomerByDocumentApplication } from '../core/Customer/application/getCustomerByDocument.application';
+
 // Customer
 const createCustomerApp = {
   provide: CUSTOMER_TYPES.applications.ICreateCustomerApplication,
@@ -23,7 +24,7 @@ const customerRepository = {
 
 @Module({
   controllers: [CustomerController],
-  imports: [TypeOrmModule.forFeature([Customer])],
+  imports: [TypeOrmModule.forFeature([CustomerSchema])],
   providers: [createCustomerApp, getCustomerByDocumentApp, customerRepository],
 })
 export class CustomerModule {}

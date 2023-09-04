@@ -3,10 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Store } from '../../../../core/Store/domain/entities/store.entity';
 import { IStoreRepository } from '../../../../core/Store/domain/repositories/interfaces/storeRepository.interface';
 import { Repository } from 'typeorm';
+import { StoreSchema } from '../../../../adapter/driver/schemas/store.schema';
 
 @Injectable()
 export class StoreRepository implements IStoreRepository {
-  constructor(@InjectRepository(Store) private repository: Repository<Store>) {}
+  constructor(@InjectRepository(StoreSchema) private repository: Repository<Store>) {}
   async getById(storeId: string): Promise<Store> {
     return await this.repository.findOne({
       where: {
