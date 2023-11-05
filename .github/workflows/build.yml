@@ -1,7 +1,6 @@
 name: 'CI'
 on: pull_request
 jobs:
-  using: "composite"
   install-deps: 
     runs-on: ubuntu-latest
     strategy:
