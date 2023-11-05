@@ -1,14 +1,21 @@
 name: 'CI'
 on: pull_request
-runs:
-  using: "composite"
+jobs:
   install-deps: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: ./actions/install-deps
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -16,7 +23,16 @@ runs:
         node-version: [16.x]
     needs: [install-deps]
     steps:
-      - uses: ./actions/install-deps
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
+
       - name: Run e2e tests
         run: yarn test:e2e
   lint:      
@@ -26,7 +42,14 @@ runs:
         node-version: [16.x]
     needs: [install-deps]
     steps:
-      - uses: ./actions/install-deps
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
       - name: Lint
         run: yarn lint
   build:
@@ -36,6 +59,13 @@ runs:
         node-version: [16.x]
     needs: [install-deps, tests, lint]
     steps:
-      - uses: ./actions/install-deps
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
       - name: Run build
         run: yarn build
