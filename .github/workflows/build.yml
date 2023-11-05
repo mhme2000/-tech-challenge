@@ -1,6 +1,6 @@
 name: 'CI'
 on: pull_request
-runs:
+jobs:
   using: "composite"
   install-deps: 
     runs-on: ubuntu-latest
