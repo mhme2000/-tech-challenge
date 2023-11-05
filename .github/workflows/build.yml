@@ -38,7 +38,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run tests
+      - name: Lint
+        run: yarn lint
+
+      - name: Run e2e tests
         run: yarn test:e2e
       
   sonarcloud:

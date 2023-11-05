@@ -48,21 +48,15 @@ export class OrderController {
     try {
       const order = await this.getOrderByIdApp.getOrderById(orderId);
       const statusCode = order ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-      res
-        .status(statusCode)
-        .json({
-          statusCode: statusCode,
-          data: order,
-        })
-        ;
+      res.status(statusCode).json({
+        statusCode: statusCode,
+        data: order,
+      });
     } catch (err) {
-      res
-        .status(HttpStatus.BAD_REQUEST)
-        .json({
-          statusCode: HttpStatus.BAD_REQUEST,
-          message: err,
-        })
-        ;
+      res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
     }
   }
 
@@ -75,21 +69,15 @@ export class OrderController {
       const orders = await this.getOrderByStoreId.getByStoreId(storeId);
       const statusCode =
         orders.length > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-      res
-        .status(statusCode)
-        .json({
-          statusCode: statusCode,
-          data: orders,
-        })
-        ;
+      res.status(statusCode).json({
+        statusCode: statusCode,
+        data: orders,
+      });
     } catch (err) {
-      res
-        .status(HttpStatus.BAD_REQUEST)
-        .json({
-          statusCode: HttpStatus.BAD_REQUEST,
-          message: err,
-        })
-        ;
+      res.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: err,
+      });
     }
   }
 

@@ -7,11 +7,11 @@ export class PaymentWebhookMercadoPagoDTO {
     type: String,
   })
   id: string;
-  
+
   @IsEnum(MercadoPagoPaymentStatusEnum)
-  @ApiProperty({ 
-    enum: MercadoPagoPaymentStatusEnum, 
-    examples: Object.keys(MercadoPagoPaymentStatusEnum) 
+  @ApiProperty({
+    enum: MercadoPagoPaymentStatusEnum,
+    examples: Object.keys(MercadoPagoPaymentStatusEnum),
   })
   status: MercadoPagoPaymentStatusEnum;
 }
