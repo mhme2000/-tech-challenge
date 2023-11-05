@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: database-deployment
+  namespace: database-tech-challenge
+spec:
+  template:
+    metadata:
+      name: database
+      labels:
+        app: database-pod
+    spec:
+      containers:
+        - name: database-container
+          image: postgres
+          ports:
+            - name: database-port
+              containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: database-secret
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: database-pvc
+          livenessProbe:
+            tcpSocket:
+              port: database-port
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: database-port
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+      volumes:
+        - name: database-pvc
+          persistentVolumeClaim:
+            claimName: database-pvc
+  selector:
+    matchLabels:
+      app: database-pod
+  serviceName: database-service
+        

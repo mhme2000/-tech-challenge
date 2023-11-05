@@ -1,0 +1,10 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: api-tech-challenge
+  name: api-dev-role
+rules:
+  - apiGroups: ["*"]
+    resources: ["pods", "deployments", "services", "secrets", "configMap"]
+    verbs: ["list", "create", "watch", "patch", "delete", "exec", "get"]
+

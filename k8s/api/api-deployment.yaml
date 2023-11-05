@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-fiap-deployment
+  namespace: api-tech-challenge
+  labels:
+    app: api-fiap-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-fiap-pod
+  template:
+    metadata:
+      name: api-fiap-pod
+      labels:
+        app: api-fiap-pod
+    spec:
+      initContainers:
+        - name: wait-for-database
+          image: busybox
+          command: ["sh", "-c", "until nc -z -w 5 database-service.database-tech-challenge.svc.cluster.local 5432; do sleep 5; done"]
+      containers:
+        - name: api-fiap-challenge-container
+          image: gustavoclemente/api-tech-challenge-fiap:1.1.0
+          ports:
+            - name: api-port
+              containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: api-secrets
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 500m
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: api-port
+            initialDelaySeconds: 30
+            periodSeconds: 10

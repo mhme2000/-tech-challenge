@@ -1,0 +1,63 @@
+services:
+  api:
+    container_name: api
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PROMETHEUS_ENDPOINT: http://prometheus:9090
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: 'postgres'
+    depends_on:
+      - prometheus
+      - postgres
+    networks:
+      - nest-js-network
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_HOST: ${DB_HOST}
+    ports:
+      - '5432:5432'
+    volumes:
+      - tech-challenge-database:/var/lib/postgresql/data
+    networks:
+      - nest-js-network
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - '9090:9090'
+    networks:
+      - nest-js-network
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:8.1.5
+    ports:
+      - "3001:3000"  
+    depends_on:
+      - prometheus        
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+    networks:
+      - nest-js-network
+
+networks:
+  nest-js-network:
+    driver: bridge
+
+volumes:
+  tech-challenge-database:

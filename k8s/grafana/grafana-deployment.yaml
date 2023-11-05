@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment
+  namespace: monitoring-tech-challenge
+spec:
+  template:
+    metadata:
+      name: grafana
+      labels:
+        app: grafana-pod
+    spec:
+      containers:
+        - name: grafana-container
+          image: grafana/grafana:8.1.5
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: grafana-volume
+              mountPath: /var/lib/grafana
+      volumes:
+        - name: grafana-volume
+          persistentVolumeClaim:
+            claimName: grafana-pvc
+  selector:
+    matchLabels:
+      app: grafana-pod
+  replicas: 1
+        

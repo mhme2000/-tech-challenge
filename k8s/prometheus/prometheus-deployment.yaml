@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+  namespace: monitoring-tech-challenge
+spec:
+  template:
+    metadata:
+      name: prometheus
+      labels:
+        app: prometheus-pod
+    spec:
+      containers:
+        - name: prometheus-container
+          image: prom/prometheus:latest
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-volume
+              mountPath: /etc/prometheus
+      volumes:
+        - name: prometheus-volume
+          configMap:
+            name: prometheus-configmap
+  selector:
+    matchLabels:
+      app: prometheus-pod
+  replicas: 1
+        

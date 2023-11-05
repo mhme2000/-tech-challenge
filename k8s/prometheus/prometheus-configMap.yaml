@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-configmap
+  namespace: monitoring-tech-challenge
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 5s
+    scrape_configs:
+      - job_name: "nestjs-api-metrics"
+        metrics_path: /metrics
+        static_configs:
+          - targets: ["api-service:3000"]
+    
