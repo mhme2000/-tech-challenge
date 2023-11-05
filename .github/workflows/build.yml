@@ -3,10 +3,10 @@ on:
   push:
     branches: 
       - main
+      - develop
+      - github-actions
   pull_request:
-    branches: 
-      - main
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, created]
 runs:
   using: "composite"
   install-deps: 
