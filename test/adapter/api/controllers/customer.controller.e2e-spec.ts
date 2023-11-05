@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { CustomerModule } from '../../../../src/modules/customer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HttpModule } from '@nestjs/axios';;
+import { HttpModule } from '@nestjs/axios';
 import { CustomerSchema } from '../../../../src/adapter/driver/schemas/customer.schema';
 
 describe('Customer', () => {

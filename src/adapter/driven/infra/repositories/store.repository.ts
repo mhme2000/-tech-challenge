@@ -5,10 +5,11 @@ import { IStoreRepository } from '../../../../core/Store/domain/repositories/int
 import { Repository } from 'typeorm';
 import { StoreSchema } from '../../../driver/schemas/store.schema';
 
-
 @Injectable()
 export class StoreRepository implements IStoreRepository {
-  constructor(@InjectRepository(StoreSchema) private repository: Repository<Store>) {}
+  constructor(
+    @InjectRepository(StoreSchema) private repository: Repository<Store>,
+  ) {}
   async getById(storeId: string): Promise<Store> {
     return await this.repository.findOne({
       where: {

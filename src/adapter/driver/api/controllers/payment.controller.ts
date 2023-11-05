@@ -75,7 +75,8 @@ export class PaymentController {
         .json({
           statusCode: HttpStatus.BAD_REQUEST,
           message: err,
-        }).send();
+        })
+        .send();
     }
   }
 }

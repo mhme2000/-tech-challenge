@@ -12,7 +12,10 @@ export const dataSourceOptions: TypeOrmModuleOptions &
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: ['dist/core/**/*.entity.js', 'dist/adapter/driver/schemas/*.schema.js'],
+  entities: [
+    'dist/core/**/*.entity.js',
+    'dist/adapter/driver/schemas/*.schema.js',
+  ],
   cache: false,
   synchronize: false,
   migrationsRun: false,
