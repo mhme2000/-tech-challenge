@@ -7,7 +7,7 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: ./actions/install-deps
+      - uses: ./actions/install-deps-action.yml
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -15,7 +15,7 @@ jobs:
         node-version: [16.x]
     needs: [install-deps]
     steps:
-      - uses: ./actions/install-deps
+      - uses: ./actions/install-deps-action.yml
       - name: Run e2e tests
         run: yarn test:e2e
   lint:      
@@ -25,7 +25,7 @@ jobs:
         node-version: [16.x]
     needs: [install-deps]
     steps:
-      - uses: ./actions/install-deps
+      - uses: ./actions/install-deps-action.yml
       - name: Lint
         run: yarn lint
   build:
@@ -35,6 +35,6 @@ jobs:
         node-version: [16.x]
     needs: [install-deps, tests, lint]
     steps:
-      - uses: ./actions/install-deps
+      - uses: ./actions/install-deps-action.yml
       - name: Run build
         run: yarn build
