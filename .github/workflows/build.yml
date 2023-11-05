@@ -1,9 +1,5 @@
 name: 'CI'
-on: 
-  push:
-    branches: '**'
-  pull_request:
-    types: [opened, synchronize, reopened, created]
+on: pull_request
 runs:
   using: "composite"
   install-deps: 
