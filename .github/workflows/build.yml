@@ -23,15 +23,30 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-  build:
-    steps:
-      - name: Run build
-        run: yarn build
   tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    needs: [install-deps]
     steps:
       - name: Run e2e tests
         run: yarn test:e2e
   lint:      
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    needs: [install-deps]
     steps:
       - name: Lint
         run: yarn lint
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    needs: [install-deps, tests, lint]
+    steps:
+      - name: Run build
+        run: yarn build
