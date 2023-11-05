@@ -39,7 +39,7 @@ jobs:
         run: yarn install
 
       - name: Run tests
-        run: yarn jest
+        run: yarn test:e2e
       
   sonarcloud:
     name: SonarCloud
