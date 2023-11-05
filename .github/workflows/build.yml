@@ -8,7 +8,14 @@ jobs:
         node-version: [16.x]
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/install-deps-action/action
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -17,7 +24,15 @@ jobs:
     needs: [install-deps]
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/install-deps-action/action
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
+
       - name: Run e2e tests
         run: yarn test:e2e
   lint:      
@@ -28,7 +43,13 @@ jobs:
     needs: [install-deps]
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/install-deps-action/action
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
       - name: Lint
         run: yarn lint
   build:
@@ -39,6 +60,12 @@ jobs:
     needs: [install-deps, tests, lint]
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/install-deps-action/action
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
       - name: Run build
         run: yarn build
