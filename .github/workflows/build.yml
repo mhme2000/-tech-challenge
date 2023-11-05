@@ -4,22 +4,15 @@ on:
     branches: ['main']
   pull_request:
     types: [opened, synchronize, reopened]
-jobs:
+runs:
+  using: "composite"
   install-deps: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: yarn install
+      - uses: ./actions/install-deps
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -27,6 +20,7 @@ jobs:
         node-version: [16.x]
     needs: [install-deps]
     steps:
+      - uses: ./actions/install-deps
       - name: Run e2e tests
         run: yarn test:e2e
   lint:      
@@ -36,6 +30,7 @@ jobs:
         node-version: [16.x]
     needs: [install-deps]
     steps:
+      - uses: ./actions/install-deps
       - name: Lint
         run: yarn lint
   build:
@@ -45,5 +40,6 @@ jobs:
         node-version: [16.x]
     needs: [install-deps, tests, lint]
     steps:
+      - uses: ./actions/install-deps
       - name: Run build
         run: yarn build
