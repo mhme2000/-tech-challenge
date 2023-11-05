@@ -1,10 +1,5 @@
 name: 'CI'
 on: 
-  push:
-    branches: 
-      - main
-      - develop
-      - github-actions
   pull_request:
     types: [opened, synchronize, reopened, created]
 runs:
